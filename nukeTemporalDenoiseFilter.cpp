@@ -840,10 +840,10 @@ void GinzburgDenoiseFilterPlugin::engine ( int y, int x, int r, ChannelMask chan
 				}
 
 				currWeightSpat = ( 1 - spatTemporalWeight)*_wS/(exp((normalDist/_wN)*(normalDist/_wN)*0.5)*
-																exp((beautyDist/_wColor)*(beautyDist/_wB)*0.5)*
-																exp((positionDist/_wPosition)*(positionDist/_wP)*0.5)*
-																exp((depthDist/_wD)*(depthDist/_wD)*0.5)*
-																exp((albedoDist/_wA)*(albedoDist/_wA)*0.5));
+										exp((beautyDist/_wColor)*(beautyDist/_wB)*0.5)*
+										exp((positionDist/_wPosition)*(positionDist/_wP)*0.5)*
+										exp((depthDist/_wD)*(depthDist/_wD)*0.5)*
+										exp((albedoDist/_wA)*(albedoDist/_wA)*0.5));
 
 				resultValue[0] += tile[_beauty[0]][tile.clampy(y+py)][tile.clampx(i+px)]*currWeightSpat;
 				resultValue[1] += tile[_beauty[1]][tile.clampy(y+py)][tile.clampx(i+px)]*currWeightSpat;
