@@ -1,5 +1,6 @@
 // Copyright (c) 2021, Dmitrii David Ginzburg.  All Rights Reserved.
 //
+
 // Standard plug-in include files.
 #include "DDImage/Iop.h"
 #include "DDImage/NukeWrapper.h"
@@ -177,8 +178,8 @@ static Iop* GinzburgDenoiseFilterPluginCreate(Node* node)
 	how to create one, and the menu item to show the user. The menu item may be
 	0 if you do not want the operator to be visible.
  */
-const Iop::Description GinzburgDenoiseFilterPlugin::description ( CLASS, "GinzburgDenoiseFilter/GinzburgDenoiseFilterPlugin",
-																GinzburgDenoiseFilterPluginCreate );
+const Iop::Description GinzburgDenoiseFilterPlugin::description(CLASS, "GinzburgDenoiseFilter/GinzburgDenoiseFilterPlugin",
+								GinzburgDenoiseFilterPluginCreate);
 
 const char* const GinzburgDenoiseFilterPlugin::CLASS = "GinzburgDenoiseFilterPlugin";
 const char* const GinzburgDenoiseFilterPlugin::HELP = "GinzburgDenoiseFilterPlugin";
