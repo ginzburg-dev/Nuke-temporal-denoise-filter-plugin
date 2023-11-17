@@ -429,6 +429,7 @@ void GinzburgDenoiseFilterPlugin::engine ( int y, int x, int r, ChannelMask chan
 				for(int j = 0; j < 6; j++)
 					for(int j1 = 0; j1 < 2; j1++)
 						mvTrace[j][j1] = 0.0f;
+
 				// MotionVector tracer
 				if(useMV){
 					mvTrace[0][0] = tile[_mv[0]][tile.clampy(y)][tile.clampx(i)]*MotionVectorMult;
@@ -451,132 +452,132 @@ void GinzburgDenoiseFilterPlugin::engine ( int y, int x, int r, ChannelMask chan
 				}
 
 				// Distance Treshold
-				pDist[0] = sqrt((float)_epsX  * (tile[_position[0]][tile.clampy(y)][tile.clampx(i)] - tile1[_position[0]][tile1.clampy(y+mvTrace[0][1]+py)][tile1.clampx(i+mvTrace[0][0]+px)])*
-												(tile[_position[0]][tile.clampy(y)][tile.clampx(i)] - tile1[_position[0]][tile1.clampy(y+mvTrace[0][1]+py)][tile1.clampx(i+mvTrace[0][0]+px)])+
-										_epsY * (tile[_position[1]][tile.clampy(y)][tile.clampx(i)] - tile1[_position[1]][tile1.clampy(y+mvTrace[0][1]+py)][tile1.clampx(i+mvTrace[0][0]+px)])*
-												(tile[_position[1]][tile.clampy(y)][tile.clampx(i)] - tile1[_position[1]][tile1.clampy(y+mvTrace[0][1]+py)][tile1.clampx(i+mvTrace[0][0]+px)])+
-										_epsZ * (tile[_position[2]][tile.clampy(y)][tile.clampx(i)] - tile1[_position[2]][tile1.clampy(y+mvTrace[0][1]+py)][tile1.clampx(i+mvTrace[0][0]+px)])*
-												(tile[_position[2]][tile.clampy(y)][tile.clampx(i)] - tile1[_position[2]][tile1.clampy(y+mvTrace[0][1]+py)][tile1.clampx(i+mvTrace[0][0]+px)]));
+				pDist[0] = sqrt((float)_epsX * (tile[_position[0]][tile.clampy(y)][tile.clampx(i)] - tile1[_position[0]][tile1.clampy(y+mvTrace[0][1]+py)][tile1.clampx(i+mvTrace[0][0]+px)])*
+								(tile[_position[0]][tile.clampy(y)][tile.clampx(i)] - tile1[_position[0]][tile1.clampy(y+mvTrace[0][1]+py)][tile1.clampx(i+mvTrace[0][0]+px)])+
+							_epsY * (tile[_position[1]][tile.clampy(y)][tile.clampx(i)] - tile1[_position[1]][tile1.clampy(y+mvTrace[0][1]+py)][tile1.clampx(i+mvTrace[0][0]+px)])*
+								(tile[_position[1]][tile.clampy(y)][tile.clampx(i)] - tile1[_position[1]][tile1.clampy(y+mvTrace[0][1]+py)][tile1.clampx(i+mvTrace[0][0]+px)])+
+							_epsZ * (tile[_position[2]][tile.clampy(y)][tile.clampx(i)] - tile1[_position[2]][tile1.clampy(y+mvTrace[0][1]+py)][tile1.clampx(i+mvTrace[0][0]+px)])*
+								(tile[_position[2]][tile.clampy(y)][tile.clampx(i)] - tile1[_position[2]][tile1.clampy(y+mvTrace[0][1]+py)][tile1.clampx(i+mvTrace[0][0]+px)]));
 
-				pDist[1] = sqrt((float)_epsX  * (tile[_position[0]][tile.clampy(y)][tile.clampx(i)] - tile2[_position[0]][tile2.clampy(y+mvTrace[1][1]+py)][tile2.clampx(i+mvTrace[1][0]+px)])*
-												(tile[_position[0]][tile.clampy(y)][tile.clampx(i)] - tile2[_position[0]][tile2.clampy(y+mvTrace[1][1]+py)][tile2.clampx(i+mvTrace[1][0]+px)])+
-										_epsY * (tile[_position[1]][tile.clampy(y)][tile.clampx(i)] - tile2[_position[1]][tile2.clampy(y+mvTrace[1][1]+py)][tile2.clampx(i+mvTrace[1][0]+px)])*
-												(tile[_position[1]][tile.clampy(y)][tile.clampx(i)] - tile2[_position[1]][tile2.clampy(y+mvTrace[1][1]+py)][tile2.clampx(i+mvTrace[1][0]+px)])+
-										_epsZ * (tile[_position[2]][tile.clampy(y)][tile.clampx(i)] - tile2[_position[2]][tile2.clampy(y+mvTrace[1][1]+py)][tile2.clampx(i+mvTrace[1][0]+px)])*
-												(tile[_position[2]][tile.clampy(y)][tile.clampx(i)] - tile2[_position[2]][tile2.clampy(y+mvTrace[1][1]+py)][tile2.clampx(i+mvTrace[1][0]+px)]));
+				pDist[1] = sqrt((float)_epsX * (tile[_position[0]][tile.clampy(y)][tile.clampx(i)] - tile2[_position[0]][tile2.clampy(y+mvTrace[1][1]+py)][tile2.clampx(i+mvTrace[1][0]+px)])*
+								(tile[_position[0]][tile.clampy(y)][tile.clampx(i)] - tile2[_position[0]][tile2.clampy(y+mvTrace[1][1]+py)][tile2.clampx(i+mvTrace[1][0]+px)])+
+							_epsY * (tile[_position[1]][tile.clampy(y)][tile.clampx(i)] - tile2[_position[1]][tile2.clampy(y+mvTrace[1][1]+py)][tile2.clampx(i+mvTrace[1][0]+px)])*
+								(tile[_position[1]][tile.clampy(y)][tile.clampx(i)] - tile2[_position[1]][tile2.clampy(y+mvTrace[1][1]+py)][tile2.clampx(i+mvTrace[1][0]+px)])+
+							_epsZ * (tile[_position[2]][tile.clampy(y)][tile.clampx(i)] - tile2[_position[2]][tile2.clampy(y+mvTrace[1][1]+py)][tile2.clampx(i+mvTrace[1][0]+px)])*
+								(tile[_position[2]][tile.clampy(y)][tile.clampx(i)] - tile2[_position[2]][tile2.clampy(y+mvTrace[1][1]+py)][tile2.clampx(i+mvTrace[1][0]+px)]));
 
-				pDist[2] = sqrt((float)_epsX  * (tile[_position[0]][tile.clampy(y)][tile.clampx(i)] - tile3[_position[0]][tile3.clampy(y+mvTrace[2][1]+py)][tile3.clampx(i+mvTrace[2][0]+px)])*
-												(tile[_position[0]][tile.clampy(y)][tile.clampx(i)] - tile3[_position[0]][tile3.clampy(y+mvTrace[2][1]+py)][tile3.clampx(i+mvTrace[2][0]+px)])+
-										_epsY * (tile[_position[1]][tile.clampy(y)][tile.clampx(i)] - tile3[_position[1]][tile3.clampy(y+mvTrace[2][1]+py)][tile3.clampx(i+mvTrace[2][0]+px)])*
-												(tile[_position[1]][tile.clampy(y)][tile.clampx(i)] - tile3[_position[1]][tile3.clampy(y+mvTrace[2][1]+py)][tile3.clampx(i+mvTrace[2][0]+px)])+
-										_epsZ * (tile[_position[2]][tile.clampy(y)][tile.clampx(i)] - tile3[_position[2]][tile3.clampy(y+mvTrace[2][1]+py)][tile3.clampx(i+mvTrace[2][0]+px)])*
-												(tile[_position[2]][tile.clampy(y)][tile.clampx(i)] - tile3[_position[2]][tile3.clampy(y+mvTrace[2][1]+py)][tile3.clampx(i+mvTrace[2][0]+px)]));
+				pDist[2] = sqrt((float)_epsX * (tile[_position[0]][tile.clampy(y)][tile.clampx(i)] - tile3[_position[0]][tile3.clampy(y+mvTrace[2][1]+py)][tile3.clampx(i+mvTrace[2][0]+px)])*
+								(tile[_position[0]][tile.clampy(y)][tile.clampx(i)] - tile3[_position[0]][tile3.clampy(y+mvTrace[2][1]+py)][tile3.clampx(i+mvTrace[2][0]+px)])+
+							_epsY * (tile[_position[1]][tile.clampy(y)][tile.clampx(i)] - tile3[_position[1]][tile3.clampy(y+mvTrace[2][1]+py)][tile3.clampx(i+mvTrace[2][0]+px)])*
+								(tile[_position[1]][tile.clampy(y)][tile.clampx(i)] - tile3[_position[1]][tile3.clampy(y+mvTrace[2][1]+py)][tile3.clampx(i+mvTrace[2][0]+px)])+
+							_epsZ * (tile[_position[2]][tile.clampy(y)][tile.clampx(i)] - tile3[_position[2]][tile3.clampy(y+mvTrace[2][1]+py)][tile3.clampx(i+mvTrace[2][0]+px)])*
+								(tile[_position[2]][tile.clampy(y)][tile.clampx(i)] - tile3[_position[2]][tile3.clampy(y+mvTrace[2][1]+py)][tile3.clampx(i+mvTrace[2][0]+px)]));
 
-				pDist[3] = sqrt((float)_epsX  * (tile[_position[0]][tile.clampy(y)][tile.clampx(i)] - tile4[_position[0]][tile4.clampy(y+mvTrace[3][1]+py)][tile4.clampx(i+mvTrace[3][0]+px)])*
-												(tile[_position[0]][tile.clampy(y)][tile.clampx(i)] - tile4[_position[0]][tile4.clampy(y+mvTrace[3][1]+py)][tile4.clampx(i+mvTrace[3][0]+px)])+
-										_epsY * (tile[_position[1]][tile.clampy(y)][tile.clampx(i)] - tile4[_position[1]][tile4.clampy(y+mvTrace[3][1]+py)][tile4.clampx(i+mvTrace[3][0]+px)])*
-												(tile[_position[1]][tile.clampy(y)][tile.clampx(i)] - tile4[_position[1]][tile4.clampy(y+mvTrace[3][1]+py)][tile4.clampx(i+mvTrace[3][0]+px)])+
-										_epsZ * (tile[_position[2]][tile.clampy(y)][tile.clampx(i)] - tile4[_position[2]][tile4.clampy(y+mvTrace[3][1]+py)][tile4.clampx(i+mvTrace[3][0]+px)])*
-												(tile[_position[2]][tile.clampy(y)][tile.clampx(i)] - tile4[_position[2]][tile4.clampy(y+mvTrace[3][1]+py)][tile4.clampx(i+mvTrace[3][0]+px)]));
+				pDist[3] = sqrt((float)_epsX * (tile[_position[0]][tile.clampy(y)][tile.clampx(i)] - tile4[_position[0]][tile4.clampy(y+mvTrace[3][1]+py)][tile4.clampx(i+mvTrace[3][0]+px)])*
+								(tile[_position[0]][tile.clampy(y)][tile.clampx(i)] - tile4[_position[0]][tile4.clampy(y+mvTrace[3][1]+py)][tile4.clampx(i+mvTrace[3][0]+px)])+
+							_epsY * (tile[_position[1]][tile.clampy(y)][tile.clampx(i)] - tile4[_position[1]][tile4.clampy(y+mvTrace[3][1]+py)][tile4.clampx(i+mvTrace[3][0]+px)])*
+								(tile[_position[1]][tile.clampy(y)][tile.clampx(i)] - tile4[_position[1]][tile4.clampy(y+mvTrace[3][1]+py)][tile4.clampx(i+mvTrace[3][0]+px)])+
+							_epsZ * (tile[_position[2]][tile.clampy(y)][tile.clampx(i)] - tile4[_position[2]][tile4.clampy(y+mvTrace[3][1]+py)][tile4.clampx(i+mvTrace[3][0]+px)])*
+								(tile[_position[2]][tile.clampy(y)][tile.clampx(i)] - tile4[_position[2]][tile4.clampy(y+mvTrace[3][1]+py)][tile4.clampx(i+mvTrace[3][0]+px)]));
 
-				pDist[4] = sqrt((float)_epsX  * (tile[_position[0]][tile.clampy(y)][tile.clampx(i)] - tile5[_position[0]][tile5.clampy(y+mvTrace[4][1]+py)][tile5.clampx(i+mvTrace[4][0]+px)])*
-												(tile[_position[0]][tile.clampy(y)][tile.clampx(i)] - tile5[_position[0]][tile5.clampy(y+mvTrace[4][1]+py)][tile5.clampx(i+mvTrace[4][0]+px)])+
-										_epsY * (tile[_position[1]][tile.clampy(y)][tile.clampx(i)] - tile5[_position[1]][tile5.clampy(y+mvTrace[4][1]+py)][tile5.clampx(i+mvTrace[4][0]+px)])*
-												(tile[_position[1]][tile.clampy(y)][tile.clampx(i)] - tile5[_position[1]][tile5.clampy(y+mvTrace[4][1]+py)][tile5.clampx(i+mvTrace[4][0]+px)])+
-										_epsZ * (tile[_position[2]][tile.clampy(y)][tile.clampx(i)] - tile5[_position[2]][tile5.clampy(y+mvTrace[4][1]+py)][tile5.clampx(i+mvTrace[4][0]+px)])*
-												(tile[_position[2]][tile.clampy(y)][tile.clampx(i)] - tile5[_position[2]][tile5.clampy(y+mvTrace[4][1]+py)][tile5.clampx(i+mvTrace[4][0]+px)]));
+				pDist[4] = sqrt((float)_epsX * (tile[_position[0]][tile.clampy(y)][tile.clampx(i)] - tile5[_position[0]][tile5.clampy(y+mvTrace[4][1]+py)][tile5.clampx(i+mvTrace[4][0]+px)])*
+								(tile[_position[0]][tile.clampy(y)][tile.clampx(i)] - tile5[_position[0]][tile5.clampy(y+mvTrace[4][1]+py)][tile5.clampx(i+mvTrace[4][0]+px)])+
+							_epsY * (tile[_position[1]][tile.clampy(y)][tile.clampx(i)] - tile5[_position[1]][tile5.clampy(y+mvTrace[4][1]+py)][tile5.clampx(i+mvTrace[4][0]+px)])*
+								(tile[_position[1]][tile.clampy(y)][tile.clampx(i)] - tile5[_position[1]][tile5.clampy(y+mvTrace[4][1]+py)][tile5.clampx(i+mvTrace[4][0]+px)])+
+							_epsZ * (tile[_position[2]][tile.clampy(y)][tile.clampx(i)] - tile5[_position[2]][tile5.clampy(y+mvTrace[4][1]+py)][tile5.clampx(i+mvTrace[4][0]+px)])*
+								(tile[_position[2]][tile.clampy(y)][tile.clampx(i)] - tile5[_position[2]][tile5.clampy(y+mvTrace[4][1]+py)][tile5.clampx(i+mvTrace[4][0]+px)]));
 
-				pDist[5] = sqrt((float)_epsX  * (tile[_position[0]][tile.clampy(y)][tile.clampx(i)] - tile6[_position[0]][tile6.clampy(y+mvTrace[5][1]+py)][tile6.clampx(i+mvTrace[5][0]+px)])*
-												(tile[_position[0]][tile.clampy(y)][tile.clampx(i)] - tile6[_position[0]][tile6.clampy(y+mvTrace[5][1]+py)][tile6.clampx(i+mvTrace[5][0]+px)])+
-										_epsY * (tile[_position[1]][tile.clampy(y)][tile.clampx(i)] - tile6[_position[1]][tile6.clampy(y+mvTrace[5][1]+py)][tile6.clampx(i+mvTrace[5][0]+px)])*
-												(tile[_position[1]][tile.clampy(y)][tile.clampx(i)] - tile6[_position[1]][tile6.clampy(y+mvTrace[5][1]+py)][tile6.clampx(i+mvTrace[5][0]+px)])+
-										_epsZ * (tile[_position[2]][tile.clampy(y)][tile.clampx(i)] - tile6[_position[2]][tile6.clampy(y+mvTrace[5][1]+py)][tile6.clampx(i+mvTrace[5][0]+px)])*
-												(tile[_position[2]][tile.clampy(y)][tile.clampx(i)] - tile6[_position[2]][tile6.clampy(y+mvTrace[5][1]+py)][tile6.clampx(i+mvTrace[5][0]+px)]));
+				pDist[5] = sqrt((float)_epsX * (tile[_position[0]][tile.clampy(y)][tile.clampx(i)] - tile6[_position[0]][tile6.clampy(y+mvTrace[5][1]+py)][tile6.clampx(i+mvTrace[5][0]+px)])*
+								(tile[_position[0]][tile.clampy(y)][tile.clampx(i)] - tile6[_position[0]][tile6.clampy(y+mvTrace[5][1]+py)][tile6.clampx(i+mvTrace[5][0]+px)])+
+							_epsY * (tile[_position[1]][tile.clampy(y)][tile.clampx(i)] - tile6[_position[1]][tile6.clampy(y+mvTrace[5][1]+py)][tile6.clampx(i+mvTrace[5][0]+px)])*
+								(tile[_position[1]][tile.clampy(y)][tile.clampx(i)] - tile6[_position[1]][tile6.clampy(y+mvTrace[5][1]+py)][tile6.clampx(i+mvTrace[5][0]+px)])+
+							_epsZ * (tile[_position[2]][tile.clampy(y)][tile.clampx(i)] - tile6[_position[2]][tile6.clampy(y+mvTrace[5][1]+py)][tile6.clampx(i+mvTrace[5][0]+px)])*
+								(tile[_position[2]][tile.clampy(y)][tile.clampx(i)] - tile6[_position[2]][tile6.clampy(y+mvTrace[5][1]+py)][tile6.clampx(i+mvTrace[5][0]+px)]));
 
 				// color treshold
 				pColor[0] = sqrt((float)(tile[_beauty[0]][tile.clampy(y)][tile.clampx(i)] - tile1[_beauty[0]][tile1.clampy(y+mvTrace[0][1]+py)][tile1.clampx(i+mvTrace[0][0]+px)])*
-										(tile[_beauty[0]][tile.clampy(y)][tile.clampx(i)] - tile1[_beauty[0]][tile1.clampy(y+mvTrace[0][1]+py)][tile1.clampx(i+mvTrace[0][0]+px)])+
-										(tile[_beauty[1]][tile.clampy(y)][tile.clampx(i)] - tile1[_beauty[1]][tile1.clampy(y+mvTrace[0][1]+py)][tile1.clampx(i+mvTrace[0][0]+px)])*
-										(tile[_beauty[1]][tile.clampy(y)][tile.clampx(i)] - tile1[_beauty[1]][tile1.clampy(y+mvTrace[0][1]+py)][tile1.clampx(i+mvTrace[0][0]+px)])+
-										(tile[_beauty[2]][tile.clampy(y)][tile.clampx(i)] - tile1[_beauty[2]][tile1.clampy(y+mvTrace[0][1]+py)][tile1.clampx(i+mvTrace[0][0]+px)])*
-										(tile[_beauty[2]][tile.clampy(y)][tile.clampx(i)] - tile1[_beauty[2]][tile1.clampy(y+mvTrace[0][1]+py)][tile1.clampx(i+mvTrace[0][0]+px)]));
+							(tile[_beauty[0]][tile.clampy(y)][tile.clampx(i)] - tile1[_beauty[0]][tile1.clampy(y+mvTrace[0][1]+py)][tile1.clampx(i+mvTrace[0][0]+px)])+
+							(tile[_beauty[1]][tile.clampy(y)][tile.clampx(i)] - tile1[_beauty[1]][tile1.clampy(y+mvTrace[0][1]+py)][tile1.clampx(i+mvTrace[0][0]+px)])*
+							(tile[_beauty[1]][tile.clampy(y)][tile.clampx(i)] - tile1[_beauty[1]][tile1.clampy(y+mvTrace[0][1]+py)][tile1.clampx(i+mvTrace[0][0]+px)])+
+							(tile[_beauty[2]][tile.clampy(y)][tile.clampx(i)] - tile1[_beauty[2]][tile1.clampy(y+mvTrace[0][1]+py)][tile1.clampx(i+mvTrace[0][0]+px)])*
+							(tile[_beauty[2]][tile.clampy(y)][tile.clampx(i)] - tile1[_beauty[2]][tile1.clampy(y+mvTrace[0][1]+py)][tile1.clampx(i+mvTrace[0][0]+px)]));
 
 				pColor[1] = sqrt((float)(tile[_beauty[0]][tile.clampy(y)][tile.clampx(i)] - tile2[_beauty[0]][tile2.clampy(y+mvTrace[1][1]+py)][tile2.clampx(i+mvTrace[1][0]+px)])*
-										(tile[_beauty[0]][tile.clampy(y)][tile.clampx(i)] - tile2[_beauty[0]][tile2.clampy(y+mvTrace[1][1]+py)][tile2.clampx(i+mvTrace[1][0]+px)])+
-										(tile[_beauty[1]][tile.clampy(y)][tile.clampx(i)] - tile2[_beauty[1]][tile2.clampy(y+mvTrace[1][1]+py)][tile2.clampx(i+mvTrace[1][0]+px)])*
-										(tile[_beauty[1]][tile.clampy(y)][tile.clampx(i)] - tile2[_beauty[1]][tile2.clampy(y+mvTrace[1][1]+py)][tile2.clampx(i+mvTrace[1][0]+px)])+
-										(tile[_beauty[2]][tile.clampy(y)][tile.clampx(i)] - tile2[_beauty[2]][tile2.clampy(y+mvTrace[1][1]+py)][tile2.clampx(i+mvTrace[1][0]+px)])*
-										(tile[_beauty[2]][tile.clampy(y)][tile.clampx(i)] - tile2[_beauty[2]][tile2.clampy(y+mvTrace[1][1]+py)][tile2.clampx(i+mvTrace[1][0]+px)]));
+							(tile[_beauty[0]][tile.clampy(y)][tile.clampx(i)] - tile2[_beauty[0]][tile2.clampy(y+mvTrace[1][1]+py)][tile2.clampx(i+mvTrace[1][0]+px)])+
+							(tile[_beauty[1]][tile.clampy(y)][tile.clampx(i)] - tile2[_beauty[1]][tile2.clampy(y+mvTrace[1][1]+py)][tile2.clampx(i+mvTrace[1][0]+px)])*
+							(tile[_beauty[1]][tile.clampy(y)][tile.clampx(i)] - tile2[_beauty[1]][tile2.clampy(y+mvTrace[1][1]+py)][tile2.clampx(i+mvTrace[1][0]+px)])+
+							(tile[_beauty[2]][tile.clampy(y)][tile.clampx(i)] - tile2[_beauty[2]][tile2.clampy(y+mvTrace[1][1]+py)][tile2.clampx(i+mvTrace[1][0]+px)])*
+							(tile[_beauty[2]][tile.clampy(y)][tile.clampx(i)] - tile2[_beauty[2]][tile2.clampy(y+mvTrace[1][1]+py)][tile2.clampx(i+mvTrace[1][0]+px)]));
 
 				pColor[2] = sqrt((float)(tile[_beauty[0]][tile.clampy(y)][tile.clampx(i)] - tile3[_beauty[0]][tile3.clampy(y+mvTrace[2][1]+py)][tile3.clampx(i+mvTrace[2][0]+px)])*
-										(tile[_beauty[0]][tile.clampy(y)][tile.clampx(i)] - tile3[_beauty[0]][tile3.clampy(y+mvTrace[2][1]+py)][tile3.clampx(i+mvTrace[2][0]+px)])+
-										(tile[_beauty[1]][tile.clampy(y)][tile.clampx(i)] - tile3[_beauty[1]][tile3.clampy(y+mvTrace[2][1]+py)][tile3.clampx(i+mvTrace[2][0]+px)])*
-										(tile[_beauty[1]][tile.clampy(y)][tile.clampx(i)] - tile3[_beauty[1]][tile3.clampy(y+mvTrace[2][1]+py)][tile3.clampx(i+mvTrace[2][0]+px)])+
-										(tile[_beauty[2]][tile.clampy(y)][tile.clampx(i)] - tile3[_beauty[2]][tile3.clampy(y+mvTrace[2][1]+py)][tile3.clampx(i+mvTrace[2][0]+px)])*
-										(tile[_beauty[2]][tile.clampy(y)][tile.clampx(i)] - tile3[_beauty[2]][tile3.clampy(y+mvTrace[2][1]+py)][tile3.clampx(i+mvTrace[2][0]+px)]));
+							(tile[_beauty[0]][tile.clampy(y)][tile.clampx(i)] - tile3[_beauty[0]][tile3.clampy(y+mvTrace[2][1]+py)][tile3.clampx(i+mvTrace[2][0]+px)])+
+							(tile[_beauty[1]][tile.clampy(y)][tile.clampx(i)] - tile3[_beauty[1]][tile3.clampy(y+mvTrace[2][1]+py)][tile3.clampx(i+mvTrace[2][0]+px)])*
+							(tile[_beauty[1]][tile.clampy(y)][tile.clampx(i)] - tile3[_beauty[1]][tile3.clampy(y+mvTrace[2][1]+py)][tile3.clampx(i+mvTrace[2][0]+px)])+
+							(tile[_beauty[2]][tile.clampy(y)][tile.clampx(i)] - tile3[_beauty[2]][tile3.clampy(y+mvTrace[2][1]+py)][tile3.clampx(i+mvTrace[2][0]+px)])*
+							(tile[_beauty[2]][tile.clampy(y)][tile.clampx(i)] - tile3[_beauty[2]][tile3.clampy(y+mvTrace[2][1]+py)][tile3.clampx(i+mvTrace[2][0]+px)]));
 
 				pColor[3] = sqrt((float)(tile[_beauty[0]][tile.clampy(y)][tile.clampx(i)] - tile4[_beauty[0]][tile4.clampy(y+mvTrace[3][1]+py)][tile4.clampx(i+mvTrace[3][0]+px)])*
-										(tile[_beauty[0]][tile.clampy(y)][tile.clampx(i)] - tile4[_beauty[0]][tile4.clampy(y+mvTrace[3][1]+py)][tile4.clampx(i+mvTrace[3][0]+px)])+
-										(tile[_beauty[1]][tile.clampy(y)][tile.clampx(i)] - tile4[_beauty[1]][tile4.clampy(y+mvTrace[3][1]+py)][tile4.clampx(i+mvTrace[3][0]+px)])*
-										(tile[_beauty[1]][tile.clampy(y)][tile.clampx(i)] - tile4[_beauty[1]][tile4.clampy(y+mvTrace[3][1]+py)][tile4.clampx(i+mvTrace[3][0]+px)])+
-										(tile[_beauty[2]][tile.clampy(y)][tile.clampx(i)] - tile4[_beauty[2]][tile4.clampy(y+mvTrace[3][1]+py)][tile4.clampx(i+mvTrace[3][0]+px)])*
-										(tile[_beauty[2]][tile.clampy(y)][tile.clampx(i)] - tile4[_beauty[2]][tile4.clampy(y+mvTrace[3][1]+py)][tile4.clampx(i+mvTrace[3][0]+px)]));
+							(tile[_beauty[0]][tile.clampy(y)][tile.clampx(i)] - tile4[_beauty[0]][tile4.clampy(y+mvTrace[3][1]+py)][tile4.clampx(i+mvTrace[3][0]+px)])+
+							(tile[_beauty[1]][tile.clampy(y)][tile.clampx(i)] - tile4[_beauty[1]][tile4.clampy(y+mvTrace[3][1]+py)][tile4.clampx(i+mvTrace[3][0]+px)])*
+							(tile[_beauty[1]][tile.clampy(y)][tile.clampx(i)] - tile4[_beauty[1]][tile4.clampy(y+mvTrace[3][1]+py)][tile4.clampx(i+mvTrace[3][0]+px)])+
+							(tile[_beauty[2]][tile.clampy(y)][tile.clampx(i)] - tile4[_beauty[2]][tile4.clampy(y+mvTrace[3][1]+py)][tile4.clampx(i+mvTrace[3][0]+px)])*
+							(tile[_beauty[2]][tile.clampy(y)][tile.clampx(i)] - tile4[_beauty[2]][tile4.clampy(y+mvTrace[3][1]+py)][tile4.clampx(i+mvTrace[3][0]+px)]));
 
 				pColor[4] = sqrt((float)(tile[_beauty[0]][tile.clampy(y)][tile.clampx(i)] - tile5[_beauty[0]][tile5.clampy(y+mvTrace[4][1]+py)][tile5.clampx(i+mvTrace[4][0]+px)])*
-										(tile[_beauty[0]][tile.clampy(y)][tile.clampx(i)] - tile5[_beauty[0]][tile5.clampy(y+mvTrace[4][1]+py)][tile5.clampx(i+mvTrace[4][0]+px)])+
-										(tile[_beauty[1]][tile.clampy(y)][tile.clampx(i)] - tile5[_beauty[1]][tile5.clampy(y+mvTrace[4][1]+py)][tile5.clampx(i+mvTrace[4][0]+px)])*
-										(tile[_beauty[1]][tile.clampy(y)][tile.clampx(i)] - tile5[_beauty[1]][tile5.clampy(y+mvTrace[4][1]+py)][tile5.clampx(i+mvTrace[4][0]+px)])+
-										(tile[_beauty[2]][tile.clampy(y)][tile.clampx(i)] - tile5[_beauty[2]][tile5.clampy(y+mvTrace[4][1]+py)][tile5.clampx(i+mvTrace[4][0]+px)])*
-										(tile[_beauty[2]][tile.clampy(y)][tile.clampx(i)] - tile5[_beauty[2]][tile5.clampy(y+mvTrace[4][1]+py)][tile5.clampx(i+mvTrace[4][0]+px)]));
+							(tile[_beauty[0]][tile.clampy(y)][tile.clampx(i)] - tile5[_beauty[0]][tile5.clampy(y+mvTrace[4][1]+py)][tile5.clampx(i+mvTrace[4][0]+px)])+
+							(tile[_beauty[1]][tile.clampy(y)][tile.clampx(i)] - tile5[_beauty[1]][tile5.clampy(y+mvTrace[4][1]+py)][tile5.clampx(i+mvTrace[4][0]+px)])*
+							(tile[_beauty[1]][tile.clampy(y)][tile.clampx(i)] - tile5[_beauty[1]][tile5.clampy(y+mvTrace[4][1]+py)][tile5.clampx(i+mvTrace[4][0]+px)])+
+							(tile[_beauty[2]][tile.clampy(y)][tile.clampx(i)] - tile5[_beauty[2]][tile5.clampy(y+mvTrace[4][1]+py)][tile5.clampx(i+mvTrace[4][0]+px)])*
+							(tile[_beauty[2]][tile.clampy(y)][tile.clampx(i)] - tile5[_beauty[2]][tile5.clampy(y+mvTrace[4][1]+py)][tile5.clampx(i+mvTrace[4][0]+px)]));
 
 				pColor[5] = sqrt((float)(tile[_beauty[0]][tile.clampy(y)][tile.clampx(i)] - tile6[_beauty[0]][tile6.clampy(y+mvTrace[5][1]+py)][tile6.clampx(i+mvTrace[5][0]+px)])*
-										(tile[_beauty[0]][tile.clampy(y)][tile.clampx(i)] - tile6[_beauty[0]][tile6.clampy(y+mvTrace[5][1]+py)][tile6.clampx(i+mvTrace[5][0]+px)])+
-										(tile[_beauty[1]][tile.clampy(y)][tile.clampx(i)] - tile6[_beauty[1]][tile6.clampy(y+mvTrace[5][1]+py)][tile6.clampx(i+mvTrace[5][0]+px)])*
-										(tile[_beauty[1]][tile.clampy(y)][tile.clampx(i)] - tile6[_beauty[1]][tile6.clampy(y+mvTrace[5][1]+py)][tile6.clampx(i+mvTrace[5][0]+px)])+
-										(tile[_beauty[2]][tile.clampy(y)][tile.clampx(i)] - tile6[_beauty[2]][tile6.clampy(y+mvTrace[5][1]+py)][tile6.clampx(i+mvTrace[5][0]+px)])*
-										(tile[_beauty[2]][tile.clampy(y)][tile.clampx(i)] - tile6[_beauty[2]][tile6.clampy(y+mvTrace[5][1]+py)][tile6.clampx(i+mvTrace[5][0]+px)]));
+							(tile[_beauty[0]][tile.clampy(y)][tile.clampx(i)] - tile6[_beauty[0]][tile6.clampy(y+mvTrace[5][1]+py)][tile6.clampx(i+mvTrace[5][0]+px)])+
+							(tile[_beauty[1]][tile.clampy(y)][tile.clampx(i)] - tile6[_beauty[1]][tile6.clampy(y+mvTrace[5][1]+py)][tile6.clampx(i+mvTrace[5][0]+px)])*
+							(tile[_beauty[1]][tile.clampy(y)][tile.clampx(i)] - tile6[_beauty[1]][tile6.clampy(y+mvTrace[5][1]+py)][tile6.clampx(i+mvTrace[5][0]+px)])+
+							(tile[_beauty[2]][tile.clampy(y)][tile.clampx(i)] - tile6[_beauty[2]][tile6.clampy(y+mvTrace[5][1]+py)][tile6.clampx(i+mvTrace[5][0]+px)])*
+							(tile[_beauty[2]][tile.clampy(y)][tile.clampx(i)] - tile6[_beauty[2]][tile6.clampy(y+mvTrace[5][1]+py)][tile6.clampx(i+mvTrace[5][0]+px)]));
 
-				pZtA[0] = sqrt((float)(  tile[_albedo[0]][tile.clampy(y)][tile.clampx(i)] - tile1[_albedo[0]][tile1.clampy(y+mvTrace[0][1]+py)][tile1.clampx(i+mvTrace[0][0]+px)])*
-										(tile[_albedo[0]][tile.clampy(y)][tile.clampx(i)] - tile1[_albedo[0]][tile1.clampy(y+mvTrace[0][1]+py)][tile1.clampx(i+mvTrace[0][0]+px)])+
-										(tile[_albedo[1]][tile.clampy(y)][tile.clampx(i)] - tile1[_albedo[1]][tile1.clampy(y+mvTrace[0][1]+py)][tile1.clampx(i+mvTrace[0][0]+px)])*
-										(tile[_albedo[1]][tile.clampy(y)][tile.clampx(i)] - tile1[_albedo[1]][tile1.clampy(y+mvTrace[0][1]+py)][tile1.clampx(i+mvTrace[0][0]+px)])+
-										(tile[_albedo[2]][tile.clampy(y)][tile.clampx(i)] - tile1[_albedo[2]][tile1.clampy(y+mvTrace[0][1]+py)][tile1.clampx(i+mvTrace[0][0]+px)])*
-										(tile[_albedo[2]][tile.clampy(y)][tile.clampx(i)] - tile1[_albedo[2]][tile1.clampy(y+mvTrace[0][1]+py)][tile1.clampx(i+mvTrace[0][0]+px)]));
+				pZtA[0] = sqrt((float)(tile[_albedo[0]][tile.clampy(y)][tile.clampx(i)] - tile1[_albedo[0]][tile1.clampy(y+mvTrace[0][1]+py)][tile1.clampx(i+mvTrace[0][0]+px)])*
+							(tile[_albedo[0]][tile.clampy(y)][tile.clampx(i)] - tile1[_albedo[0]][tile1.clampy(y+mvTrace[0][1]+py)][tile1.clampx(i+mvTrace[0][0]+px)])+
+							(tile[_albedo[1]][tile.clampy(y)][tile.clampx(i)] - tile1[_albedo[1]][tile1.clampy(y+mvTrace[0][1]+py)][tile1.clampx(i+mvTrace[0][0]+px)])*
+							(tile[_albedo[1]][tile.clampy(y)][tile.clampx(i)] - tile1[_albedo[1]][tile1.clampy(y+mvTrace[0][1]+py)][tile1.clampx(i+mvTrace[0][0]+px)])+
+							(tile[_albedo[2]][tile.clampy(y)][tile.clampx(i)] - tile1[_albedo[2]][tile1.clampy(y+mvTrace[0][1]+py)][tile1.clampx(i+mvTrace[0][0]+px)])*
+							(tile[_albedo[2]][tile.clampy(y)][tile.clampx(i)] - tile1[_albedo[2]][tile1.clampy(y+mvTrace[0][1]+py)][tile1.clampx(i+mvTrace[0][0]+px)]));
 
-				pZtA[1] = sqrt((float)(  tile[_albedo[0]][tile.clampy(y)][tile.clampx(i)] - tile2[_albedo[0]][tile2.clampy(y+mvTrace[1][1]+py)][tile2.clampx(i+mvTrace[1][0]+px)])*
-										(tile[_albedo[0]][tile.clampy(y)][tile.clampx(i)] - tile2[_albedo[0]][tile2.clampy(y+mvTrace[1][1]+py)][tile2.clampx(i+mvTrace[1][0]+px)])+
-										(tile[_albedo[1]][tile.clampy(y)][tile.clampx(i)] - tile2[_albedo[1]][tile2.clampy(y+mvTrace[1][1]+py)][tile2.clampx(i+mvTrace[1][0]+px)])*
-										(tile[_albedo[1]][tile.clampy(y)][tile.clampx(i)] - tile2[_albedo[1]][tile2.clampy(y+mvTrace[1][1]+py)][tile2.clampx(i+mvTrace[1][0]+px)])+
-										(tile[_albedo[2]][tile.clampy(y)][tile.clampx(i)] - tile2[_albedo[2]][tile2.clampy(y+mvTrace[1][1]+py)][tile2.clampx(i+mvTrace[1][0]+px)])*
-										(tile[_albedo[2]][tile.clampy(y)][tile.clampx(i)] - tile2[_albedo[2]][tile2.clampy(y+mvTrace[1][1]+py)][tile2.clampx(i+mvTrace[1][0]+px)]));
+				pZtA[1] = sqrt((float)(tile[_albedo[0]][tile.clampy(y)][tile.clampx(i)] - tile2[_albedo[0]][tile2.clampy(y+mvTrace[1][1]+py)][tile2.clampx(i+mvTrace[1][0]+px)])*
+							(tile[_albedo[0]][tile.clampy(y)][tile.clampx(i)] - tile2[_albedo[0]][tile2.clampy(y+mvTrace[1][1]+py)][tile2.clampx(i+mvTrace[1][0]+px)])+
+							(tile[_albedo[1]][tile.clampy(y)][tile.clampx(i)] - tile2[_albedo[1]][tile2.clampy(y+mvTrace[1][1]+py)][tile2.clampx(i+mvTrace[1][0]+px)])*
+							(tile[_albedo[1]][tile.clampy(y)][tile.clampx(i)] - tile2[_albedo[1]][tile2.clampy(y+mvTrace[1][1]+py)][tile2.clampx(i+mvTrace[1][0]+px)])+
+							(tile[_albedo[2]][tile.clampy(y)][tile.clampx(i)] - tile2[_albedo[2]][tile2.clampy(y+mvTrace[1][1]+py)][tile2.clampx(i+mvTrace[1][0]+px)])*
+							(tile[_albedo[2]][tile.clampy(y)][tile.clampx(i)] - tile2[_albedo[2]][tile2.clampy(y+mvTrace[1][1]+py)][tile2.clampx(i+mvTrace[1][0]+px)]));
 
-				pZtA[2] = sqrt((float)(  tile[_albedo[0]][tile.clampy(y)][tile.clampx(i)] - tile3[_albedo[0]][tile3.clampy(y+mvTrace[2][1]+py)][tile3.clampx(i+mvTrace[2][0]+px)])*
-										(tile[_albedo[0]][tile.clampy(y)][tile.clampx(i)] - tile3[_albedo[0]][tile3.clampy(y+mvTrace[2][1]+py)][tile3.clampx(i+mvTrace[2][0]+px)])+
-										(tile[_albedo[1]][tile.clampy(y)][tile.clampx(i)] - tile3[_albedo[1]][tile3.clampy(y+mvTrace[2][1]+py)][tile3.clampx(i+mvTrace[2][0]+px)])*
-										(tile[_albedo[1]][tile.clampy(y)][tile.clampx(i)] - tile3[_albedo[1]][tile3.clampy(y+mvTrace[2][1]+py)][tile3.clampx(i+mvTrace[2][0]+px)])+
-										(tile[_albedo[2]][tile.clampy(y)][tile.clampx(i)] - tile3[_albedo[2]][tile3.clampy(y+mvTrace[2][1]+py)][tile3.clampx(i+mvTrace[2][0]+px)])*
-										(tile[_albedo[2]][tile.clampy(y)][tile.clampx(i)] - tile3[_albedo[2]][tile3.clampy(y+mvTrace[2][1]+py)][tile3.clampx(i+mvTrace[2][0]+px)]));
+				pZtA[2] = sqrt((float)(tile[_albedo[0]][tile.clampy(y)][tile.clampx(i)] - tile3[_albedo[0]][tile3.clampy(y+mvTrace[2][1]+py)][tile3.clampx(i+mvTrace[2][0]+px)])*
+							(tile[_albedo[0]][tile.clampy(y)][tile.clampx(i)] - tile3[_albedo[0]][tile3.clampy(y+mvTrace[2][1]+py)][tile3.clampx(i+mvTrace[2][0]+px)])+
+							(tile[_albedo[1]][tile.clampy(y)][tile.clampx(i)] - tile3[_albedo[1]][tile3.clampy(y+mvTrace[2][1]+py)][tile3.clampx(i+mvTrace[2][0]+px)])*
+							(tile[_albedo[1]][tile.clampy(y)][tile.clampx(i)] - tile3[_albedo[1]][tile3.clampy(y+mvTrace[2][1]+py)][tile3.clampx(i+mvTrace[2][0]+px)])+
+							(tile[_albedo[2]][tile.clampy(y)][tile.clampx(i)] - tile3[_albedo[2]][tile3.clampy(y+mvTrace[2][1]+py)][tile3.clampx(i+mvTrace[2][0]+px)])*
+							(tile[_albedo[2]][tile.clampy(y)][tile.clampx(i)] - tile3[_albedo[2]][tile3.clampy(y+mvTrace[2][1]+py)][tile3.clampx(i+mvTrace[2][0]+px)]));
 
-				pZtA[3] = sqrt((float)(  tile[_albedo[0]][tile.clampy(y)][tile.clampx(i)] - tile4[_albedo[0]][tile4.clampy(y+mvTrace[3][1]+py)][tile4.clampx(i+mvTrace[3][0]+px)])*
-										(tile[_albedo[0]][tile.clampy(y)][tile.clampx(i)] - tile4[_albedo[0]][tile4.clampy(y+mvTrace[3][1]+py)][tile4.clampx(i+mvTrace[3][0]+px)])+
-										(tile[_albedo[1]][tile.clampy(y)][tile.clampx(i)] - tile4[_albedo[1]][tile4.clampy(y+mvTrace[3][1]+py)][tile4.clampx(i+mvTrace[3][0]+px)])*
-										(tile[_albedo[1]][tile.clampy(y)][tile.clampx(i)] - tile4[_albedo[1]][tile4.clampy(y+mvTrace[3][1]+py)][tile4.clampx(i+mvTrace[3][0]+px)])+
-										(tile[_albedo[2]][tile.clampy(y)][tile.clampx(i)] - tile4[_albedo[2]][tile4.clampy(y+mvTrace[3][1]+py)][tile4.clampx(i+mvTrace[3][0]+px)])*
-										(tile[_albedo[2]][tile.clampy(y)][tile.clampx(i)] - tile4[_albedo[2]][tile4.clampy(y+mvTrace[3][1]+py)][tile4.clampx(i+mvTrace[3][0]+px)]));
+				pZtA[3] = sqrt((float)(tile[_albedo[0]][tile.clampy(y)][tile.clampx(i)] - tile4[_albedo[0]][tile4.clampy(y+mvTrace[3][1]+py)][tile4.clampx(i+mvTrace[3][0]+px)])*
+							(tile[_albedo[0]][tile.clampy(y)][tile.clampx(i)] - tile4[_albedo[0]][tile4.clampy(y+mvTrace[3][1]+py)][tile4.clampx(i+mvTrace[3][0]+px)])+
+							(tile[_albedo[1]][tile.clampy(y)][tile.clampx(i)] - tile4[_albedo[1]][tile4.clampy(y+mvTrace[3][1]+py)][tile4.clampx(i+mvTrace[3][0]+px)])*
+							(tile[_albedo[1]][tile.clampy(y)][tile.clampx(i)] - tile4[_albedo[1]][tile4.clampy(y+mvTrace[3][1]+py)][tile4.clampx(i+mvTrace[3][0]+px)])+
+							(tile[_albedo[2]][tile.clampy(y)][tile.clampx(i)] - tile4[_albedo[2]][tile4.clampy(y+mvTrace[3][1]+py)][tile4.clampx(i+mvTrace[3][0]+px)])*
+							(tile[_albedo[2]][tile.clampy(y)][tile.clampx(i)] - tile4[_albedo[2]][tile4.clampy(y+mvTrace[3][1]+py)][tile4.clampx(i+mvTrace[3][0]+px)]));
 
-				pZtA[4] = sqrt((float)(  tile[_albedo[0]][tile.clampy(y)][tile.clampx(i)] - tile5[_albedo[0]][tile5.clampy(y+mvTrace[4][1]+py)][tile5.clampx(i+mvTrace[4][0]+px)])*
-										(tile[_albedo[0]][tile.clampy(y)][tile.clampx(i)] - tile5[_albedo[0]][tile5.clampy(y+mvTrace[4][1]+py)][tile5.clampx(i+mvTrace[4][0]+px)])+
-										(tile[_albedo[1]][tile.clampy(y)][tile.clampx(i)] - tile5[_albedo[1]][tile5.clampy(y+mvTrace[4][1]+py)][tile5.clampx(i+mvTrace[4][0]+px)])*
-										(tile[_albedo[1]][tile.clampy(y)][tile.clampx(i)] - tile5[_albedo[1]][tile5.clampy(y+mvTrace[4][1]+py)][tile5.clampx(i+mvTrace[4][0]+px)])+
-										(tile[_albedo[2]][tile.clampy(y)][tile.clampx(i)] - tile5[_albedo[2]][tile5.clampy(y+mvTrace[4][1]+py)][tile5.clampx(i+mvTrace[4][0]+px)])*
-										(tile[_albedo[2]][tile.clampy(y)][tile.clampx(i)] - tile5[_albedo[2]][tile5.clampy(y+mvTrace[4][1]+py)][tile5.clampx(i+mvTrace[4][0]+px)]));
+				pZtA[4] = sqrt((float)(tile[_albedo[0]][tile.clampy(y)][tile.clampx(i)] - tile5[_albedo[0]][tile5.clampy(y+mvTrace[4][1]+py)][tile5.clampx(i+mvTrace[4][0]+px)])*
+							(tile[_albedo[0]][tile.clampy(y)][tile.clampx(i)] - tile5[_albedo[0]][tile5.clampy(y+mvTrace[4][1]+py)][tile5.clampx(i+mvTrace[4][0]+px)])+
+							(tile[_albedo[1]][tile.clampy(y)][tile.clampx(i)] - tile5[_albedo[1]][tile5.clampy(y+mvTrace[4][1]+py)][tile5.clampx(i+mvTrace[4][0]+px)])*
+							(tile[_albedo[1]][tile.clampy(y)][tile.clampx(i)] - tile5[_albedo[1]][tile5.clampy(y+mvTrace[4][1]+py)][tile5.clampx(i+mvTrace[4][0]+px)])+
+							(tile[_albedo[2]][tile.clampy(y)][tile.clampx(i)] - tile5[_albedo[2]][tile5.clampy(y+mvTrace[4][1]+py)][tile5.clampx(i+mvTrace[4][0]+px)])*
+							(tile[_albedo[2]][tile.clampy(y)][tile.clampx(i)] - tile5[_albedo[2]][tile5.clampy(y+mvTrace[4][1]+py)][tile5.clampx(i+mvTrace[4][0]+px)]));
 
-				pZtA[5] = sqrt((float)(  tile[_albedo[0]][tile.clampy(y)][tile.clampx(i)] - tile6[_albedo[0]][tile6.clampy(y+mvTrace[5][1]+py)][tile6.clampx(i+mvTrace[5][0]+px)])*
-										(tile[_albedo[0]][tile.clampy(y)][tile.clampx(i)] - tile6[_albedo[0]][tile6.clampy(y+mvTrace[5][1]+py)][tile6.clampx(i+mvTrace[5][0]+px)])+
-										(tile[_albedo[1]][tile.clampy(y)][tile.clampx(i)] - tile6[_albedo[1]][tile6.clampy(y+mvTrace[5][1]+py)][tile6.clampx(i+mvTrace[5][0]+px)])*
-										(tile[_albedo[1]][tile.clampy(y)][tile.clampx(i)] - tile6[_albedo[1]][tile6.clampy(y+mvTrace[5][1]+py)][tile6.clampx(i+mvTrace[5][0]+px)])+
-										(tile[_albedo[2]][tile.clampy(y)][tile.clampx(i)] - tile6[_albedo[2]][tile6.clampy(y+mvTrace[5][1]+py)][tile6.clampx(i+mvTrace[5][0]+px)])*
-										(tile[_albedo[2]][tile.clampy(y)][tile.clampx(i)] - tile6[_albedo[2]][tile6.clampy(y+mvTrace[5][1]+py)][tile6.clampx(i+mvTrace[5][0]+px)]));
+				pZtA[5] = sqrt((float)(tile[_albedo[0]][tile.clampy(y)][tile.clampx(i)] - tile6[_albedo[0]][tile6.clampy(y+mvTrace[5][1]+py)][tile6.clampx(i+mvTrace[5][0]+px)])*
+							(tile[_albedo[0]][tile.clampy(y)][tile.clampx(i)] - tile6[_albedo[0]][tile6.clampy(y+mvTrace[5][1]+py)][tile6.clampx(i+mvTrace[5][0]+px)])+
+							(tile[_albedo[1]][tile.clampy(y)][tile.clampx(i)] - tile6[_albedo[1]][tile6.clampy(y+mvTrace[5][1]+py)][tile6.clampx(i+mvTrace[5][0]+px)])*
+							(tile[_albedo[1]][tile.clampy(y)][tile.clampx(i)] - tile6[_albedo[1]][tile6.clampy(y+mvTrace[5][1]+py)][tile6.clampx(i+mvTrace[5][0]+px)])+
+							(tile[_albedo[2]][tile.clampy(y)][tile.clampx(i)] - tile6[_albedo[2]][tile6.clampy(y+mvTrace[5][1]+py)][tile6.clampx(i+mvTrace[5][0]+px)])*
+							(tile[_albedo[2]][tile.clampy(y)][tile.clampx(i)] - tile6[_albedo[2]][tile6.clampy(y+mvTrace[5][1]+py)][tile6.clampx(i+mvTrace[5][0]+px)]));
 
 				for (int frame = 0; frame < nFrames-1; frame++)
 					if(	(pDist[frame] <= _eps)&&
@@ -702,41 +703,41 @@ void GinzburgDenoiseFilterPlugin::engine ( int y, int x, int r, ChannelMask chan
 					pZt[5] =  abs(tile[_depth[0]][tile.clampy(y)][tile.clampx(i)] - tile6[_depth[0]][tile6.clampy(temporalPointsXY[5][1]+py)][tile6.clampx(temporalPointsXY[5][0]+px)]);
 
 					pZtA[0] = sqrt((float)(tile[_albedo[0]][tile.clampy(y)][tile.clampx(i)] - tile1[_albedo[0]][tile1.clampy(temporalPointsXY[0][1]+py)][tile1.clampx(temporalPointsXY[0][0]+px)])*
-											(tile[_albedo[0]][tile.clampy(y)][tile.clampx(i)] - tile1[_albedo[0]][tile1.clampy(temporalPointsXY[0][1]+py)][tile1.clampx(temporalPointsXY[0][0]+px)])+
-											(tile[_albedo[1]][tile.clampy(y)][tile.clampx(i)] - tile1[_albedo[1]][tile1.clampy(temporalPointsXY[0][1]+py)][tile1.clampx(temporalPointsXY[0][0]+px)])*
-											(tile[_albedo[1]][tile.clampy(y)][tile.clampx(i)] - tile1[_albedo[1]][tile1.clampy(temporalPointsXY[0][1]+py)][tile1.clampx(temporalPointsXY[0][0]+px)])+
-											(tile[_albedo[2]][tile.clampy(y)][tile.clampx(i)] - tile1[_albedo[2]][tile1.clampy(temporalPointsXY[0][1]+py)][tile1.clampx(temporalPointsXY[0][0]+px)])*
-											(tile[_albedo[2]][tile.clampy(y)][tile.clampx(i)] - tile1[_albedo[2]][tile1.clampy(temporalPointsXY[0][1]+py)][tile1.clampx(temporalPointsXY[0][0]+px)]));
+								(tile[_albedo[0]][tile.clampy(y)][tile.clampx(i)] - tile1[_albedo[0]][tile1.clampy(temporalPointsXY[0][1]+py)][tile1.clampx(temporalPointsXY[0][0]+px)])+
+								(tile[_albedo[1]][tile.clampy(y)][tile.clampx(i)] - tile1[_albedo[1]][tile1.clampy(temporalPointsXY[0][1]+py)][tile1.clampx(temporalPointsXY[0][0]+px)])*
+								(tile[_albedo[1]][tile.clampy(y)][tile.clampx(i)] - tile1[_albedo[1]][tile1.clampy(temporalPointsXY[0][1]+py)][tile1.clampx(temporalPointsXY[0][0]+px)])+
+								(tile[_albedo[2]][tile.clampy(y)][tile.clampx(i)] - tile1[_albedo[2]][tile1.clampy(temporalPointsXY[0][1]+py)][tile1.clampx(temporalPointsXY[0][0]+px)])*
+								(tile[_albedo[2]][tile.clampy(y)][tile.clampx(i)] - tile1[_albedo[2]][tile1.clampy(temporalPointsXY[0][1]+py)][tile1.clampx(temporalPointsXY[0][0]+px)]));
 					pZtA[1] = sqrt((float)(tile[_albedo[0]][tile.clampy(y)][tile.clampx(i)] - tile2[_albedo[0]][tile2.clampy(temporalPointsXY[1][1]+py)][tile2.clampx(temporalPointsXY[1][0]+px)])*
-											(tile[_albedo[0]][tile.clampy(y)][tile.clampx(i)] - tile2[_albedo[0]][tile2.clampy(temporalPointsXY[1][1]+py)][tile2.clampx(temporalPointsXY[1][0]+px)])+
-											(tile[_albedo[1]][tile.clampy(y)][tile.clampx(i)] - tile2[_albedo[1]][tile2.clampy(temporalPointsXY[1][1]+py)][tile2.clampx(temporalPointsXY[1][0]+px)])*
-											(tile[_albedo[1]][tile.clampy(y)][tile.clampx(i)] - tile2[_albedo[1]][tile2.clampy(temporalPointsXY[1][1]+py)][tile2.clampx(temporalPointsXY[1][0]+px)])+
-											(tile[_albedo[2]][tile.clampy(y)][tile.clampx(i)] - tile2[_albedo[2]][tile2.clampy(temporalPointsXY[1][1]+py)][tile2.clampx(temporalPointsXY[1][0]+px)])*
-											(tile[_albedo[2]][tile.clampy(y)][tile.clampx(i)] - tile2[_albedo[2]][tile2.clampy(temporalPointsXY[1][1]+py)][tile2.clampx(temporalPointsXY[1][0]+px)]));
+								(tile[_albedo[0]][tile.clampy(y)][tile.clampx(i)] - tile2[_albedo[0]][tile2.clampy(temporalPointsXY[1][1]+py)][tile2.clampx(temporalPointsXY[1][0]+px)])+
+								(tile[_albedo[1]][tile.clampy(y)][tile.clampx(i)] - tile2[_albedo[1]][tile2.clampy(temporalPointsXY[1][1]+py)][tile2.clampx(temporalPointsXY[1][0]+px)])*
+								(tile[_albedo[1]][tile.clampy(y)][tile.clampx(i)] - tile2[_albedo[1]][tile2.clampy(temporalPointsXY[1][1]+py)][tile2.clampx(temporalPointsXY[1][0]+px)])+
+								(tile[_albedo[2]][tile.clampy(y)][tile.clampx(i)] - tile2[_albedo[2]][tile2.clampy(temporalPointsXY[1][1]+py)][tile2.clampx(temporalPointsXY[1][0]+px)])*
+								(tile[_albedo[2]][tile.clampy(y)][tile.clampx(i)] - tile2[_albedo[2]][tile2.clampy(temporalPointsXY[1][1]+py)][tile2.clampx(temporalPointsXY[1][0]+px)]));
 					pZtA[2] = sqrt((float)(tile[_albedo[0]][tile.clampy(y)][tile.clampx(i)] - tile3[_albedo[0]][tile3.clampy(temporalPointsXY[2][1]+py)][tile3.clampx(temporalPointsXY[2][0]+px)])*
-											(tile[_albedo[0]][tile.clampy(y)][tile.clampx(i)] - tile3[_albedo[0]][tile3.clampy(temporalPointsXY[2][1]+py)][tile3.clampx(temporalPointsXY[2][0]+px)])+
-											(tile[_albedo[1]][tile.clampy(y)][tile.clampx(i)] - tile3[_albedo[1]][tile3.clampy(temporalPointsXY[2][1]+py)][tile3.clampx(temporalPointsXY[2][0]+px)])*
-											(tile[_albedo[1]][tile.clampy(y)][tile.clampx(i)] - tile3[_albedo[1]][tile3.clampy(temporalPointsXY[2][1]+py)][tile3.clampx(temporalPointsXY[2][0]+px)])+
-											(tile[_albedo[2]][tile.clampy(y)][tile.clampx(i)] - tile3[_albedo[2]][tile3.clampy(temporalPointsXY[2][1]+py)][tile3.clampx(temporalPointsXY[2][0]+px)])*
-											(tile[_albedo[2]][tile.clampy(y)][tile.clampx(i)] - tile3[_albedo[2]][tile3.clampy(temporalPointsXY[2][1]+py)][tile3.clampx(temporalPointsXY[2][0]+px)]));
+								(tile[_albedo[0]][tile.clampy(y)][tile.clampx(i)] - tile3[_albedo[0]][tile3.clampy(temporalPointsXY[2][1]+py)][tile3.clampx(temporalPointsXY[2][0]+px)])+
+								(tile[_albedo[1]][tile.clampy(y)][tile.clampx(i)] - tile3[_albedo[1]][tile3.clampy(temporalPointsXY[2][1]+py)][tile3.clampx(temporalPointsXY[2][0]+px)])*
+								(tile[_albedo[1]][tile.clampy(y)][tile.clampx(i)] - tile3[_albedo[1]][tile3.clampy(temporalPointsXY[2][1]+py)][tile3.clampx(temporalPointsXY[2][0]+px)])+
+								(tile[_albedo[2]][tile.clampy(y)][tile.clampx(i)] - tile3[_albedo[2]][tile3.clampy(temporalPointsXY[2][1]+py)][tile3.clampx(temporalPointsXY[2][0]+px)])*
+								(tile[_albedo[2]][tile.clampy(y)][tile.clampx(i)] - tile3[_albedo[2]][tile3.clampy(temporalPointsXY[2][1]+py)][tile3.clampx(temporalPointsXY[2][0]+px)]));
 					pZtA[3] = sqrt((float)(tile[_albedo[0]][tile.clampy(y)][tile.clampx(i)] - tile4[_albedo[0]][tile4.clampy(temporalPointsXY[3][1]+py)][tile4.clampx(temporalPointsXY[3][0]+px)])*
-											(tile[_albedo[0]][tile.clampy(y)][tile.clampx(i)] - tile4[_albedo[0]][tile4.clampy(temporalPointsXY[3][1]+py)][tile4.clampx(temporalPointsXY[3][0]+px)])+
-											(tile[_albedo[1]][tile.clampy(y)][tile.clampx(i)] - tile4[_albedo[1]][tile4.clampy(temporalPointsXY[3][1]+py)][tile4.clampx(temporalPointsXY[3][0]+px)])*
-											(tile[_albedo[1]][tile.clampy(y)][tile.clampx(i)] - tile4[_albedo[1]][tile4.clampy(temporalPointsXY[3][1]+py)][tile4.clampx(temporalPointsXY[3][0]+px)])+
-											(tile[_albedo[2]][tile.clampy(y)][tile.clampx(i)] - tile4[_albedo[2]][tile4.clampy(temporalPointsXY[3][1]+py)][tile4.clampx(temporalPointsXY[3][0]+px)])*
-											(tile[_albedo[2]][tile.clampy(y)][tile.clampx(i)] - tile4[_albedo[2]][tile4.clampy(temporalPointsXY[3][1]+py)][tile4.clampx(temporalPointsXY[3][0]+px)]));
+								(tile[_albedo[0]][tile.clampy(y)][tile.clampx(i)] - tile4[_albedo[0]][tile4.clampy(temporalPointsXY[3][1]+py)][tile4.clampx(temporalPointsXY[3][0]+px)])+
+								(tile[_albedo[1]][tile.clampy(y)][tile.clampx(i)] - tile4[_albedo[1]][tile4.clampy(temporalPointsXY[3][1]+py)][tile4.clampx(temporalPointsXY[3][0]+px)])*
+								(tile[_albedo[1]][tile.clampy(y)][tile.clampx(i)] - tile4[_albedo[1]][tile4.clampy(temporalPointsXY[3][1]+py)][tile4.clampx(temporalPointsXY[3][0]+px)])+
+								(tile[_albedo[2]][tile.clampy(y)][tile.clampx(i)] - tile4[_albedo[2]][tile4.clampy(temporalPointsXY[3][1]+py)][tile4.clampx(temporalPointsXY[3][0]+px)])*
+								(tile[_albedo[2]][tile.clampy(y)][tile.clampx(i)] - tile4[_albedo[2]][tile4.clampy(temporalPointsXY[3][1]+py)][tile4.clampx(temporalPointsXY[3][0]+px)]));
 					pZtA[4] = sqrt((float)(tile[_beauty[0]][tile.clampy(y)][tile.clampx(i)] - tile5[_beauty[0]][tile5.clampy(temporalPointsXY[4][1]+py)][tile5.clampx(temporalPointsXY[4][0]+px)])*
-											(tile[_beauty[0]][tile.clampy(y)][tile.clampx(i)] - tile5[_beauty[0]][tile5.clampy(temporalPointsXY[4][1]+py)][tile5.clampx(temporalPointsXY[4][0]+px)])+
-											(tile[_beauty[1]][tile.clampy(y)][tile.clampx(i)] - tile5[_beauty[1]][tile5.clampy(temporalPointsXY[4][1]+py)][tile5.clampx(temporalPointsXY[4][0]+px)])*
-											(tile[_beauty[1]][tile.clampy(y)][tile.clampx(i)] - tile5[_beauty[1]][tile5.clampy(temporalPointsXY[4][1]+py)][tile5.clampx(temporalPointsXY[4][0]+px)])+
-											(tile[_beauty[2]][tile.clampy(y)][tile.clampx(i)] - tile5[_beauty[2]][tile5.clampy(temporalPointsXY[4][1]+py)][tile5.clampx(temporalPointsXY[4][0]+px)])*
-											(tile[_beauty[2]][tile.clampy(y)][tile.clampx(i)] - tile5[_beauty[2]][tile5.clampy(temporalPointsXY[4][1]+py)][tile5.clampx(temporalPointsXY[4][0]+px)]));
+								(tile[_beauty[0]][tile.clampy(y)][tile.clampx(i)] - tile5[_beauty[0]][tile5.clampy(temporalPointsXY[4][1]+py)][tile5.clampx(temporalPointsXY[4][0]+px)])+
+								(tile[_beauty[1]][tile.clampy(y)][tile.clampx(i)] - tile5[_beauty[1]][tile5.clampy(temporalPointsXY[4][1]+py)][tile5.clampx(temporalPointsXY[4][0]+px)])*
+								(tile[_beauty[1]][tile.clampy(y)][tile.clampx(i)] - tile5[_beauty[1]][tile5.clampy(temporalPointsXY[4][1]+py)][tile5.clampx(temporalPointsXY[4][0]+px)])+
+								(tile[_beauty[2]][tile.clampy(y)][tile.clampx(i)] - tile5[_beauty[2]][tile5.clampy(temporalPointsXY[4][1]+py)][tile5.clampx(temporalPointsXY[4][0]+px)])*
+								(tile[_beauty[2]][tile.clampy(y)][tile.clampx(i)] - tile5[_beauty[2]][tile5.clampy(temporalPointsXY[4][1]+py)][tile5.clampx(temporalPointsXY[4][0]+px)]));
 					pZtA[5] = sqrt((float)(tile[_beauty[0]][tile.clampy(y)][tile.clampx(i)] - tile6[_beauty[0]][tile6.clampy(temporalPointsXY[5][1]+py)][tile6.clampx(temporalPointsXY[5][0]+px)])*
-											(tile[_beauty[0]][tile.clampy(y)][tile.clampx(i)] - tile6[_beauty[0]][tile6.clampy(temporalPointsXY[5][1]+py)][tile6.clampx(temporalPointsXY[5][0]+px)])+
-											(tile[_beauty[1]][tile.clampy(y)][tile.clampx(i)] - tile6[_beauty[1]][tile6.clampy(temporalPointsXY[5][1]+py)][tile6.clampx(temporalPointsXY[5][0]+px)])*
-											(tile[_beauty[1]][tile.clampy(y)][tile.clampx(i)] - tile6[_beauty[1]][tile6.clampy(temporalPointsXY[5][1]+py)][tile6.clampx(temporalPointsXY[5][0]+px)])+
-											(tile[_beauty[2]][tile.clampy(y)][tile.clampx(i)] - tile6[_beauty[2]][tile6.clampy(temporalPointsXY[5][1]+py)][tile6.clampx(temporalPointsXY[5][0]+px)])*
-											(tile[_beauty[2]][tile.clampy(y)][tile.clampx(i)] - tile6[_beauty[2]][tile6.clampy(temporalPointsXY[5][1]+py)][tile6.clampx(temporalPointsXY[5][0]+px)]));
+								(tile[_beauty[0]][tile.clampy(y)][tile.clampx(i)] - tile6[_beauty[0]][tile6.clampy(temporalPointsXY[5][1]+py)][tile6.clampx(temporalPointsXY[5][0]+px)])+
+								(tile[_beauty[1]][tile.clampy(y)][tile.clampx(i)] - tile6[_beauty[1]][tile6.clampy(temporalPointsXY[5][1]+py)][tile6.clampx(temporalPointsXY[5][0]+px)])*
+								(tile[_beauty[1]][tile.clampy(y)][tile.clampx(i)] - tile6[_beauty[1]][tile6.clampy(temporalPointsXY[5][1]+py)][tile6.clampx(temporalPointsXY[5][0]+px)])+
+								(tile[_beauty[2]][tile.clampy(y)][tile.clampx(i)] - tile6[_beauty[2]][tile6.clampy(temporalPointsXY[5][1]+py)][tile6.clampx(temporalPointsXY[5][0]+px)])*
+								(tile[_beauty[2]][tile.clampy(y)][tile.clampx(i)] - tile6[_beauty[2]][tile6.clampy(temporalPointsXY[5][1]+py)][tile6.clampx(temporalPointsXY[5][0]+px)]));
 
 					pColor[0] = sqrt((float)(tile[_beauty[0]][tile.clampy(y)][tile.clampx(i)] - tile1[_beauty[0]][tile1.clampy(temporalPointsXY[0][1]+py)][tile1.clampx(temporalPointsXY[0][0]+px)])*
 								(tile[_beauty[0]][tile.clampy(y)][tile.clampx(i)] - tile1[_beauty[0]][tile1.clampy(temporalPointsXY[0][1]+py)][tile1.clampx(temporalPointsXY[0][0]+px)])+
@@ -787,7 +788,8 @@ void GinzburgDenoiseFilterPlugin::engine ( int y, int x, int r, ChannelMask chan
 					normalValue1[1] = tile[_normal[1]][ tile.clampy(y + py)][ tile.clampx(i + px)];
 					normalValue1[2] = tile[_normal[2]][ tile.clampy(y + py)][ tile.clampx(i + px)];
 
-					beautyDist = sqrt((float)(beautyValue0[0]-beautyValue1[0])*(beautyValue0[0]-beautyValue1[0])+(beautyValue0[1]-beautyValue1[1])*(beautyValue0[1]-beautyValue1[1])+
+					beautyDist = sqrt((float)(beautyValue0[0]-beautyValue1[0])*(beautyValue0[0]-beautyValue1[0])+
+								(beautyValue0[1]-beautyValue1[1])*(beautyValue0[1]-beautyValue1[1])+
 								(beautyValue0[2]-beautyValue1[2])*(beautyValue0[2]-beautyValue1[2]));
 
 					albedoDist = sqrt((float)(albedoValue0[0]-albedoValue1[0])*(albedoValue0[0]-albedoValue1[0])+
@@ -811,9 +813,9 @@ void GinzburgDenoiseFilterPlugin::engine ( int y, int x, int r, ChannelMask chan
 				for(int k = 0; k < nFrames-1; k++){	
 					pPos = sqrt((float)(px*px+py*py));
 					currentWeight = sumWeightXY[k]*_wT/(exp((pZt[k]/_wDist)*(pZt[k]/_wDist)*0.5)*
-														exp((pColor[k]/_wColor)*(pColor[k]/_wColor)*0.5)*
-														exp((pZtA[k]/_wAt)*(pZtA[k]/_wAt)*0.5)*
-														exp((pPos/_wPosition)*(pPos/_wPosition)*0.5));
+									exp((pColor[k]/_wColor)*(pColor[k]/_wColor)*0.5)*
+									exp((pZtA[k]/_wAt)*(pZtA[k]/_wAt)*0.5)*
+									exp((pPos/_wPosition)*(pPos/_wPosition)*0.5));
 
 					// currentWeight *= sumWeightXY[k];
 					resultValue[0] += pChannel[k][0]*currentWeight;
