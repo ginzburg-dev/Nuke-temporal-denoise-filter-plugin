@@ -1,2 +1,2 @@
 # Nuke Temporal Ginzburg Filter by Ginzburg
-Image processing research and development
+Research and Development High Quality Denoise Filter for remove CGI Monte Carlo Noise
