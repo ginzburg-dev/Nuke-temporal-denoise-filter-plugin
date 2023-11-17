@@ -787,19 +787,19 @@ void GinzburgDenoiseFilterPlugin::engine ( int y, int x, int r, ChannelMask chan
 					normalValue1[1] = tile[_normal[1]][ tile.clampy(y + py)][ tile.clampx(i + px)];
 					normalValue1[2] = tile[_normal[2]][ tile.clampy(y + py)][ tile.clampx(i + px)];
 
-					beautyDist = sqrt((float)(beautyValue0[0]-beautyValue1[0])*(beautyValue0[0]-beautyValue1[0])+ 
-								(beautyValue0[1]-beautyValue1[1])*(beautyValue0[1]-beautyValue1[1])+
-								(beautyValue0[2]-beautyValue1[2])*(beautyValue0[2]-beautyValue1[2]));
+					beautyDist = sqrt(	(float)(beautyValue0[0]-beautyValue1[0])*(beautyValue0[0]-beautyValue1[0])+ 
+										(beautyValue0[1]-beautyValue1[1])*(beautyValue0[1]-beautyValue1[1])+
+										(beautyValue0[2]-beautyValue1[2])*(beautyValue0[2]-beautyValue1[2]));
 
-					albedoDist = sqrt((float)(albedoValue0[0]-albedoValue1[0])*(albedoValue0[0]-albedoValue1[0])+ 
-								(albedoValue0[1]-albedoValue1[1])*(albedoValue0[1]-albedoValue1[1])+
-								(albedoValue0[2]-albedoValue1[2])*(albedoValue0[2]-albedoValue1[2]));
+					albedoDist = sqrt(	(float)(albedoValue0[0]-albedoValue1[0])*(albedoValue0[0]-albedoValue1[0])+ 
+										(albedoValue0[1]-albedoValue1[1])*(albedoValue0[1]-albedoValue1[1])+
+										(albedoValue0[2]-albedoValue1[2])*(albedoValue0[2]-albedoValue1[2]));
 
 					depthDist = abs(depthValue - tile[_depth[0]][ tile.clampy(y + py)][ tile.clampx(i + px) ]);
 
-					normalDist = sqrt((float)(normalValue0[0]-normalValue1[0])*(normalValue0[0]-normalValue1[0])+ 
-								(normalValue0[1]-normalValue1[1])*(normalValue0[1]-normalValue1[1])+
-								(normalValue0[2]-normalValue1[2])*(normalValue0[2]-normalValue1[2]));
+					normalDist = sqrt(	(float)(normalValue0[0]-normalValue1[0])*(normalValue0[0]-normalValue1[0])+ 
+										(normalValue0[1]-normalValue1[1])*(normalValue0[1]-normalValue1[1])+
+										(normalValue0[2]-normalValue1[2])*(normalValue0[2]-normalValue1[2]));
 
 					positionDist = sqrt((float)px*px+py*py);
 
