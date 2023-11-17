@@ -787,8 +787,8 @@ void GinzburgDenoiseFilterPlugin::engine ( int y, int x, int r, ChannelMask chan
 					normalValue1[1] = tile[_normal[1]][ tile.clampy(y + py)][ tile.clampx(i + px)];
 					normalValue1[2] = tile[_normal[2]][ tile.clampy(y + py)][ tile.clampx(i + px)];
 
-					beautyDist =    sqrt((float)(beautyValue0[0]-beautyValue1[0])*(beautyValue0[0]-beautyValue1[0])+(beautyValue0[1]-beautyValue1[1])*(beautyValue0[1]-beautyValue1[1])+
-									(beautyValue0[2]-beautyValue1[2])*(beautyValue0[2]-beautyValue1[2]));
+					beautyDist = sqrt((float)(beautyValue0[0]-beautyValue1[0])*(beautyValue0[0]-beautyValue1[0])+(beautyValue0[1]-beautyValue1[1])*(beautyValue0[1]-beautyValue1[1])+
+								(beautyValue0[2]-beautyValue1[2])*(beautyValue0[2]-beautyValue1[2]));
 
 					albedoDist = sqrt((float)(albedoValue0[0]-albedoValue1[0])*(albedoValue0[0]-albedoValue1[0])+
 								(albedoValue0[1]-albedoValue1[1])*(albedoValue0[1]-albedoValue1[1])+
@@ -839,11 +839,11 @@ void GinzburgDenoiseFilterPlugin::engine ( int y, int x, int r, ChannelMask chan
 					sumWeight += currentWeight;
 				}
 
-				currWeightSpat = (1-spatTemporalWeight)*_wS  / (exp((normalDist/_wN)*(normalDist/_wN)*0.5)*
-																exp((beautyDist/_wColor)*(beautyDist/_wB)*0.5)*
-																exp((positionDist/_wPosition)*(positionDist/_wP)*0.5)*
-																exp((depthDist/_wD)*(depthDist/_wD)*0.5)*
-																exp((albedoDist/_wA)*(albedoDist/_wA)*0.5));
+				currWeightSpat = (1-spatTemporalWeight)*_wS/(exp((normalDist/_wN)*(normalDist/_wN)*0.5)*
+				exp((beautyDist/_wColor)*(beautyDist/_wB)*0.5)*
+								exp((positionDist/_wPosition)*(positionDist/_wP)*0.5)*
+								exp((depthDist/_wD)*(depthDist/_wD)*0.5)*
+								exp((albedoDist/_wA)*(albedoDist/_wA)*0.5));
 
 				resultValue[0] += tile[_beauty[0]][tile.clampy(y+py)][tile.clampx(i+px)]*currWeightSpat;
 				resultValue[1] += tile[_beauty[1]][tile.clampy(y+py)][tile.clampx(i+px)]*currWeightSpat;
