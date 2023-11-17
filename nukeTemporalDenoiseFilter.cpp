@@ -701,13 +701,13 @@ void GinzburgDenoiseFilterPlugin::engine ( int y, int x, int r, ChannelMask chan
 					pZt[4] =  abs(tile[_depth[0]][tile.clampy(y)][tile.clampx(i)] - tile5[_depth[0]][tile5.clampy(temporalPointsXY[4][1]+py)][tile5.clampx(temporalPointsXY[4][0]+px)]);
 					pZt[5] =  abs(tile[_depth[0]][tile.clampy(y)][tile.clampx(i)] - tile6[_depth[0]][tile6.clampy(temporalPointsXY[5][1]+py)][tile6.clampx(temporalPointsXY[5][0]+px)]);
 
-					pZtA[0] = sqrt((float)(  tile[_albedo[0]][tile.clampy(y)][tile.clampx(i)] - tile1[_albedo[0]][tile1.clampy(temporalPointsXY[0][1]+py)][tile1.clampx(temporalPointsXY[0][0]+px)])*
+					pZtA[0] = sqrt((float)(tile[_albedo[0]][tile.clampy(y)][tile.clampx(i)] - tile1[_albedo[0]][tile1.clampy(temporalPointsXY[0][1]+py)][tile1.clampx(temporalPointsXY[0][0]+px)])*
 											(tile[_albedo[0]][tile.clampy(y)][tile.clampx(i)] - tile1[_albedo[0]][tile1.clampy(temporalPointsXY[0][1]+py)][tile1.clampx(temporalPointsXY[0][0]+px)])+
 											(tile[_albedo[1]][tile.clampy(y)][tile.clampx(i)] - tile1[_albedo[1]][tile1.clampy(temporalPointsXY[0][1]+py)][tile1.clampx(temporalPointsXY[0][0]+px)])*
 											(tile[_albedo[1]][tile.clampy(y)][tile.clampx(i)] - tile1[_albedo[1]][tile1.clampy(temporalPointsXY[0][1]+py)][tile1.clampx(temporalPointsXY[0][0]+px)])+
 											(tile[_albedo[2]][tile.clampy(y)][tile.clampx(i)] - tile1[_albedo[2]][tile1.clampy(temporalPointsXY[0][1]+py)][tile1.clampx(temporalPointsXY[0][0]+px)])*
 											(tile[_albedo[2]][tile.clampy(y)][tile.clampx(i)] - tile1[_albedo[2]][tile1.clampy(temporalPointsXY[0][1]+py)][tile1.clampx(temporalPointsXY[0][0]+px)]));
-					pZtA[1] = sqrt((float)(  tile[_albedo[0]][tile.clampy(y)][tile.clampx(i)] - tile2[_albedo[0]][tile2.clampy(temporalPointsXY[1][1]+py)][tile2.clampx(temporalPointsXY[1][0]+px)])*
+					pZtA[1] = sqrt((float)(tile[_albedo[0]][tile.clampy(y)][tile.clampx(i)] - tile2[_albedo[0]][tile2.clampy(temporalPointsXY[1][1]+py)][tile2.clampx(temporalPointsXY[1][0]+px)])*
 											(tile[_albedo[0]][tile.clampy(y)][tile.clampx(i)] - tile2[_albedo[0]][tile2.clampy(temporalPointsXY[1][1]+py)][tile2.clampx(temporalPointsXY[1][0]+px)])+
 											(tile[_albedo[1]][tile.clampy(y)][tile.clampx(i)] - tile2[_albedo[1]][tile2.clampy(temporalPointsXY[1][1]+py)][tile2.clampx(temporalPointsXY[1][0]+px)])*
 											(tile[_albedo[1]][tile.clampy(y)][tile.clampx(i)] - tile2[_albedo[1]][tile2.clampy(temporalPointsXY[1][1]+py)][tile2.clampx(temporalPointsXY[1][0]+px)])+
@@ -719,19 +719,19 @@ void GinzburgDenoiseFilterPlugin::engine ( int y, int x, int r, ChannelMask chan
 											(tile[_albedo[1]][tile.clampy(y)][tile.clampx(i)] - tile3[_albedo[1]][tile3.clampy(temporalPointsXY[2][1]+py)][tile3.clampx(temporalPointsXY[2][0]+px)])+
 											(tile[_albedo[2]][tile.clampy(y)][tile.clampx(i)] - tile3[_albedo[2]][tile3.clampy(temporalPointsXY[2][1]+py)][tile3.clampx(temporalPointsXY[2][0]+px)])*
 											(tile[_albedo[2]][tile.clampy(y)][tile.clampx(i)] - tile3[_albedo[2]][tile3.clampy(temporalPointsXY[2][1]+py)][tile3.clampx(temporalPointsXY[2][0]+px)]));
-					pZtA[3] = sqrt((float)(  tile[_albedo[0]][tile.clampy(y)][tile.clampx(i)] - tile4[_albedo[0]][tile4.clampy(temporalPointsXY[3][1]+py)][tile4.clampx(temporalPointsXY[3][0]+px)])*
+					pZtA[3] = sqrt((float)(tile[_albedo[0]][tile.clampy(y)][tile.clampx(i)] - tile4[_albedo[0]][tile4.clampy(temporalPointsXY[3][1]+py)][tile4.clampx(temporalPointsXY[3][0]+px)])*
 											(tile[_albedo[0]][tile.clampy(y)][tile.clampx(i)] - tile4[_albedo[0]][tile4.clampy(temporalPointsXY[3][1]+py)][tile4.clampx(temporalPointsXY[3][0]+px)])+
 											(tile[_albedo[1]][tile.clampy(y)][tile.clampx(i)] - tile4[_albedo[1]][tile4.clampy(temporalPointsXY[3][1]+py)][tile4.clampx(temporalPointsXY[3][0]+px)])*
 											(tile[_albedo[1]][tile.clampy(y)][tile.clampx(i)] - tile4[_albedo[1]][tile4.clampy(temporalPointsXY[3][1]+py)][tile4.clampx(temporalPointsXY[3][0]+px)])+
 											(tile[_albedo[2]][tile.clampy(y)][tile.clampx(i)] - tile4[_albedo[2]][tile4.clampy(temporalPointsXY[3][1]+py)][tile4.clampx(temporalPointsXY[3][0]+px)])*
 											(tile[_albedo[2]][tile.clampy(y)][tile.clampx(i)] - tile4[_albedo[2]][tile4.clampy(temporalPointsXY[3][1]+py)][tile4.clampx(temporalPointsXY[3][0]+px)]));
-					pZtA[4] = sqrt((float)(  tile[_beauty[0]][tile.clampy(y)][tile.clampx(i)] - tile5[_beauty[0]][tile5.clampy(temporalPointsXY[4][1]+py)][tile5.clampx(temporalPointsXY[4][0]+px)])*
+					pZtA[4] = sqrt((float)(tile[_beauty[0]][tile.clampy(y)][tile.clampx(i)] - tile5[_beauty[0]][tile5.clampy(temporalPointsXY[4][1]+py)][tile5.clampx(temporalPointsXY[4][0]+px)])*
 											(tile[_beauty[0]][tile.clampy(y)][tile.clampx(i)] - tile5[_beauty[0]][tile5.clampy(temporalPointsXY[4][1]+py)][tile5.clampx(temporalPointsXY[4][0]+px)])+
 											(tile[_beauty[1]][tile.clampy(y)][tile.clampx(i)] - tile5[_beauty[1]][tile5.clampy(temporalPointsXY[4][1]+py)][tile5.clampx(temporalPointsXY[4][0]+px)])*
 											(tile[_beauty[1]][tile.clampy(y)][tile.clampx(i)] - tile5[_beauty[1]][tile5.clampy(temporalPointsXY[4][1]+py)][tile5.clampx(temporalPointsXY[4][0]+px)])+
 											(tile[_beauty[2]][tile.clampy(y)][tile.clampx(i)] - tile5[_beauty[2]][tile5.clampy(temporalPointsXY[4][1]+py)][tile5.clampx(temporalPointsXY[4][0]+px)])*
 											(tile[_beauty[2]][tile.clampy(y)][tile.clampx(i)] - tile5[_beauty[2]][tile5.clampy(temporalPointsXY[4][1]+py)][tile5.clampx(temporalPointsXY[4][0]+px)]));
-					pZtA[5] = sqrt((float)(  tile[_beauty[0]][tile.clampy(y)][tile.clampx(i)] - tile6[_beauty[0]][tile6.clampy(temporalPointsXY[5][1]+py)][tile6.clampx(temporalPointsXY[5][0]+px)])*
+					pZtA[5] = sqrt((float)(tile[_beauty[0]][tile.clampy(y)][tile.clampx(i)] - tile6[_beauty[0]][tile6.clampy(temporalPointsXY[5][1]+py)][tile6.clampx(temporalPointsXY[5][0]+px)])*
 											(tile[_beauty[0]][tile.clampy(y)][tile.clampx(i)] - tile6[_beauty[0]][tile6.clampy(temporalPointsXY[5][1]+py)][tile6.clampx(temporalPointsXY[5][0]+px)])+
 											(tile[_beauty[1]][tile.clampy(y)][tile.clampx(i)] - tile6[_beauty[1]][tile6.clampy(temporalPointsXY[5][1]+py)][tile6.clampx(temporalPointsXY[5][0]+px)])*
 											(tile[_beauty[1]][tile.clampy(y)][tile.clampx(i)] - tile6[_beauty[1]][tile6.clampy(temporalPointsXY[5][1]+py)][tile6.clampx(temporalPointsXY[5][0]+px)])+
@@ -739,41 +739,41 @@ void GinzburgDenoiseFilterPlugin::engine ( int y, int x, int r, ChannelMask chan
 											(tile[_beauty[2]][tile.clampy(y)][tile.clampx(i)] - tile6[_beauty[2]][tile6.clampy(temporalPointsXY[5][1]+py)][tile6.clampx(temporalPointsXY[5][0]+px)]));
 
 					pColor[0] = sqrt((float)(tile[_beauty[0]][tile.clampy(y)][tile.clampx(i)] - tile1[_beauty[0]][tile1.clampy(temporalPointsXY[0][1]+py)][tile1.clampx(temporalPointsXY[0][0]+px)])*
-											(tile[_beauty[0]][tile.clampy(y)][tile.clampx(i)] - tile1[_beauty[0]][tile1.clampy(temporalPointsXY[0][1]+py)][tile1.clampx(temporalPointsXY[0][0]+px)])+
-											(tile[_beauty[1]][tile.clampy(y)][tile.clampx(i)] - tile1[_beauty[1]][tile1.clampy(temporalPointsXY[0][1]+py)][tile1.clampx(temporalPointsXY[0][0]+px)])*
-											(tile[_beauty[1]][tile.clampy(y)][tile.clampx(i)] - tile1[_beauty[1]][tile1.clampy(temporalPointsXY[0][1]+py)][tile1.clampx(temporalPointsXY[0][0]+px)])+
-											(tile[_beauty[2]][tile.clampy(y)][tile.clampx(i)] - tile1[_beauty[2]][tile1.clampy(temporalPointsXY[0][1]+py)][tile1.clampx(temporalPointsXY[0][0]+px)])*
-											(tile[_beauty[2]][tile.clampy(y)][tile.clampx(i)] - tile1[_beauty[2]][tile1.clampy(temporalPointsXY[0][1]+py)][tile1.clampx(temporalPointsXY[0][0]+px)]));
+								(tile[_beauty[0]][tile.clampy(y)][tile.clampx(i)] - tile1[_beauty[0]][tile1.clampy(temporalPointsXY[0][1]+py)][tile1.clampx(temporalPointsXY[0][0]+px)])+
+								(tile[_beauty[1]][tile.clampy(y)][tile.clampx(i)] - tile1[_beauty[1]][tile1.clampy(temporalPointsXY[0][1]+py)][tile1.clampx(temporalPointsXY[0][0]+px)])*
+								(tile[_beauty[1]][tile.clampy(y)][tile.clampx(i)] - tile1[_beauty[1]][tile1.clampy(temporalPointsXY[0][1]+py)][tile1.clampx(temporalPointsXY[0][0]+px)])+
+								(tile[_beauty[2]][tile.clampy(y)][tile.clampx(i)] - tile1[_beauty[2]][tile1.clampy(temporalPointsXY[0][1]+py)][tile1.clampx(temporalPointsXY[0][0]+px)])*
+								(tile[_beauty[2]][tile.clampy(y)][tile.clampx(i)] - tile1[_beauty[2]][tile1.clampy(temporalPointsXY[0][1]+py)][tile1.clampx(temporalPointsXY[0][0]+px)]));
 					pColor[1] = sqrt((float)(tile[_beauty[0]][tile.clampy(y)][tile.clampx(i)] - tile2[_beauty[0]][tile2.clampy(temporalPointsXY[1][1]+py)][tile2.clampx(temporalPointsXY[1][0]+px)])*
-											(tile[_beauty[0]][tile.clampy(y)][tile.clampx(i)] - tile2[_beauty[0]][tile2.clampy(temporalPointsXY[1][1]+py)][tile2.clampx(temporalPointsXY[1][0]+px)])+
-											(tile[_beauty[1]][tile.clampy(y)][tile.clampx(i)] - tile2[_beauty[1]][tile2.clampy(temporalPointsXY[1][1]+py)][tile2.clampx(temporalPointsXY[1][0]+px)])*
-											(tile[_beauty[1]][tile.clampy(y)][tile.clampx(i)] - tile2[_beauty[1]][tile2.clampy(temporalPointsXY[1][1]+py)][tile2.clampx(temporalPointsXY[1][0]+px)])+
-											(tile[_beauty[2]][tile.clampy(y)][tile.clampx(i)] - tile2[_beauty[2]][tile2.clampy(temporalPointsXY[1][1]+py)][tile2.clampx(temporalPointsXY[1][0]+px)])*
-											(tile[_beauty[2]][tile.clampy(y)][tile.clampx(i)] - tile2[_beauty[2]][tile2.clampy(temporalPointsXY[1][1]+py)][tile2.clampx(temporalPointsXY[1][0]+px)]));
+								(tile[_beauty[0]][tile.clampy(y)][tile.clampx(i)] - tile2[_beauty[0]][tile2.clampy(temporalPointsXY[1][1]+py)][tile2.clampx(temporalPointsXY[1][0]+px)])+
+								(tile[_beauty[1]][tile.clampy(y)][tile.clampx(i)] - tile2[_beauty[1]][tile2.clampy(temporalPointsXY[1][1]+py)][tile2.clampx(temporalPointsXY[1][0]+px)])*
+								(tile[_beauty[1]][tile.clampy(y)][tile.clampx(i)] - tile2[_beauty[1]][tile2.clampy(temporalPointsXY[1][1]+py)][tile2.clampx(temporalPointsXY[1][0]+px)])+
+								(tile[_beauty[2]][tile.clampy(y)][tile.clampx(i)] - tile2[_beauty[2]][tile2.clampy(temporalPointsXY[1][1]+py)][tile2.clampx(temporalPointsXY[1][0]+px)])*
+								(tile[_beauty[2]][tile.clampy(y)][tile.clampx(i)] - tile2[_beauty[2]][tile2.clampy(temporalPointsXY[1][1]+py)][tile2.clampx(temporalPointsXY[1][0]+px)]));
 					pColor[2] = sqrt((float)(tile[_beauty[0]][tile.clampy(y)][tile.clampx(i)] - tile3[_beauty[0]][tile3.clampy(temporalPointsXY[2][1]+py)][tile3.clampx(temporalPointsXY[2][0]+px)])*
-											(tile[_beauty[0]][tile.clampy(y)][tile.clampx(i)] - tile3[_beauty[0]][tile3.clampy(temporalPointsXY[2][1]+py)][tile3.clampx(temporalPointsXY[2][0]+px)])+
-											(tile[_beauty[1]][tile.clampy(y)][tile.clampx(i)] - tile3[_beauty[1]][tile3.clampy(temporalPointsXY[2][1]+py)][tile3.clampx(temporalPointsXY[2][0]+px)])*
-											(tile[_beauty[1]][tile.clampy(y)][tile.clampx(i)] - tile3[_beauty[1]][tile3.clampy(temporalPointsXY[2][1]+py)][tile3.clampx(temporalPointsXY[2][0]+px)])+
-											(tile[_beauty[2]][tile.clampy(y)][tile.clampx(i)] - tile3[_beauty[2]][tile3.clampy(temporalPointsXY[2][1]+py)][tile3.clampx(temporalPointsXY[2][0]+px)])*
-											(tile[_beauty[2]][tile.clampy(y)][tile.clampx(i)] - tile3[_beauty[2]][tile3.clampy(temporalPointsXY[2][1]+py)][tile3.clampx(temporalPointsXY[2][0]+px)]));
+								(tile[_beauty[0]][tile.clampy(y)][tile.clampx(i)] - tile3[_beauty[0]][tile3.clampy(temporalPointsXY[2][1]+py)][tile3.clampx(temporalPointsXY[2][0]+px)])+
+								(tile[_beauty[1]][tile.clampy(y)][tile.clampx(i)] - tile3[_beauty[1]][tile3.clampy(temporalPointsXY[2][1]+py)][tile3.clampx(temporalPointsXY[2][0]+px)])*
+								(tile[_beauty[1]][tile.clampy(y)][tile.clampx(i)] - tile3[_beauty[1]][tile3.clampy(temporalPointsXY[2][1]+py)][tile3.clampx(temporalPointsXY[2][0]+px)])+
+								(tile[_beauty[2]][tile.clampy(y)][tile.clampx(i)] - tile3[_beauty[2]][tile3.clampy(temporalPointsXY[2][1]+py)][tile3.clampx(temporalPointsXY[2][0]+px)])*
+								(tile[_beauty[2]][tile.clampy(y)][tile.clampx(i)] - tile3[_beauty[2]][tile3.clampy(temporalPointsXY[2][1]+py)][tile3.clampx(temporalPointsXY[2][0]+px)]));
 					pColor[3] = sqrt((float)(tile[_beauty[0]][tile.clampy(y)][tile.clampx(i)] - tile4[_beauty[0]][tile4.clampy(temporalPointsXY[3][1]+py)][tile4.clampx(temporalPointsXY[3][0]+px)])*
-											(tile[_beauty[0]][tile.clampy(y)][tile.clampx(i)] - tile4[_beauty[0]][tile4.clampy(temporalPointsXY[3][1]+py)][tile4.clampx(temporalPointsXY[3][0]+px)])+
-											(tile[_beauty[1]][tile.clampy(y)][tile.clampx(i)] - tile4[_beauty[1]][tile4.clampy(temporalPointsXY[3][1]+py)][tile4.clampx(temporalPointsXY[3][0]+px)])*
-											(tile[_beauty[1]][tile.clampy(y)][tile.clampx(i)] - tile4[_beauty[1]][tile4.clampy(temporalPointsXY[3][1]+py)][tile4.clampx(temporalPointsXY[3][0]+px)])+
-											(tile[_beauty[2]][tile.clampy(y)][tile.clampx(i)] - tile4[_beauty[2]][tile4.clampy(temporalPointsXY[3][1]+py)][tile4.clampx(temporalPointsXY[3][0]+px)])*
-											(tile[_beauty[2]][tile.clampy(y)][tile.clampx(i)] - tile4[_beauty[2]][tile4.clampy(temporalPointsXY[3][1]+py)][tile4.clampx(temporalPointsXY[3][0]+px)]));
+								(tile[_beauty[0]][tile.clampy(y)][tile.clampx(i)] - tile4[_beauty[0]][tile4.clampy(temporalPointsXY[3][1]+py)][tile4.clampx(temporalPointsXY[3][0]+px)])+
+								(tile[_beauty[1]][tile.clampy(y)][tile.clampx(i)] - tile4[_beauty[1]][tile4.clampy(temporalPointsXY[3][1]+py)][tile4.clampx(temporalPointsXY[3][0]+px)])*
+								(tile[_beauty[1]][tile.clampy(y)][tile.clampx(i)] - tile4[_beauty[1]][tile4.clampy(temporalPointsXY[3][1]+py)][tile4.clampx(temporalPointsXY[3][0]+px)])+
+								(tile[_beauty[2]][tile.clampy(y)][tile.clampx(i)] - tile4[_beauty[2]][tile4.clampy(temporalPointsXY[3][1]+py)][tile4.clampx(temporalPointsXY[3][0]+px)])*
+								(tile[_beauty[2]][tile.clampy(y)][tile.clampx(i)] - tile4[_beauty[2]][tile4.clampy(temporalPointsXY[3][1]+py)][tile4.clampx(temporalPointsXY[3][0]+px)]));
 					pColor[4] = sqrt((float)(tile[_beauty[0]][tile.clampy(y)][tile.clampx(i)] - tile5[_beauty[0]][tile5.clampy(temporalPointsXY[4][1]+py)][tile5.clampx(temporalPointsXY[4][0]+px)])*
-											(tile[_beauty[0]][tile.clampy(y)][tile.clampx(i)] - tile5[_beauty[0]][tile5.clampy(temporalPointsXY[4][1]+py)][tile5.clampx(temporalPointsXY[4][0]+px)])+
-											(tile[_beauty[1]][tile.clampy(y)][tile.clampx(i)] - tile5[_beauty[1]][tile5.clampy(temporalPointsXY[4][1]+py)][tile5.clampx(temporalPointsXY[4][0]+px)])*
-											(tile[_beauty[1]][tile.clampy(y)][tile.clampx(i)] - tile5[_beauty[1]][tile5.clampy(temporalPointsXY[4][1]+py)][tile5.clampx(temporalPointsXY[4][0]+px)])+
-											(tile[_beauty[2]][tile.clampy(y)][tile.clampx(i)] - tile5[_beauty[2]][tile5.clampy(temporalPointsXY[4][1]+py)][tile5.clampx(temporalPointsXY[4][0]+px)])*
-											(tile[_beauty[2]][tile.clampy(y)][tile.clampx(i)] - tile5[_beauty[2]][tile5.clampy(temporalPointsXY[4][1]+py)][tile5.clampx(temporalPointsXY[4][0]+px)]));
+								(tile[_beauty[0]][tile.clampy(y)][tile.clampx(i)] - tile5[_beauty[0]][tile5.clampy(temporalPointsXY[4][1]+py)][tile5.clampx(temporalPointsXY[4][0]+px)])+
+								(tile[_beauty[1]][tile.clampy(y)][tile.clampx(i)] - tile5[_beauty[1]][tile5.clampy(temporalPointsXY[4][1]+py)][tile5.clampx(temporalPointsXY[4][0]+px)])*
+								(tile[_beauty[1]][tile.clampy(y)][tile.clampx(i)] - tile5[_beauty[1]][tile5.clampy(temporalPointsXY[4][1]+py)][tile5.clampx(temporalPointsXY[4][0]+px)])+
+								(tile[_beauty[2]][tile.clampy(y)][tile.clampx(i)] - tile5[_beauty[2]][tile5.clampy(temporalPointsXY[4][1]+py)][tile5.clampx(temporalPointsXY[4][0]+px)])*
+								(tile[_beauty[2]][tile.clampy(y)][tile.clampx(i)] - tile5[_beauty[2]][tile5.clampy(temporalPointsXY[4][1]+py)][tile5.clampx(temporalPointsXY[4][0]+px)]));
 					pColor[5] = sqrt((float)(tile[_beauty[0]][tile.clampy(y)][tile.clampx(i)] - tile6[_beauty[0]][tile6.clampy(temporalPointsXY[5][1]+py)][tile6.clampx(temporalPointsXY[5][0]+px)])*
-											(tile[_beauty[0]][tile.clampy(y)][tile.clampx(i)] - tile6[_beauty[0]][tile6.clampy(temporalPointsXY[5][1]+py)][tile6.clampx(temporalPointsXY[5][0]+px)])+
-											(tile[_beauty[1]][tile.clampy(y)][tile.clampx(i)] - tile6[_beauty[1]][tile6.clampy(temporalPointsXY[5][1]+py)][tile6.clampx(temporalPointsXY[5][0]+px)])*
-											(tile[_beauty[1]][tile.clampy(y)][tile.clampx(i)] - tile6[_beauty[1]][tile6.clampy(temporalPointsXY[5][1]+py)][tile6.clampx(temporalPointsXY[5][0]+px)])+
-											(tile[_beauty[2]][tile.clampy(y)][tile.clampx(i)] - tile6[_beauty[2]][tile6.clampy(temporalPointsXY[5][1]+py)][tile6.clampx(temporalPointsXY[5][0]+px)])*
-											(tile[_beauty[2]][tile.clampy(y)][tile.clampx(i)] - tile6[_beauty[2]][tile6.clampy(temporalPointsXY[5][1]+py)][tile6.clampx(temporalPointsXY[5][0]+px)]));
+								(tile[_beauty[0]][tile.clampy(y)][tile.clampx(i)] - tile6[_beauty[0]][tile6.clampy(temporalPointsXY[5][1]+py)][tile6.clampx(temporalPointsXY[5][0]+px)])+
+								(tile[_beauty[1]][tile.clampy(y)][tile.clampx(i)] - tile6[_beauty[1]][tile6.clampy(temporalPointsXY[5][1]+py)][tile6.clampx(temporalPointsXY[5][0]+px)])*
+								(tile[_beauty[1]][tile.clampy(y)][tile.clampx(i)] - tile6[_beauty[1]][tile6.clampy(temporalPointsXY[5][1]+py)][tile6.clampx(temporalPointsXY[5][0]+px)])+
+								(tile[_beauty[2]][tile.clampy(y)][tile.clampx(i)] - tile6[_beauty[2]][tile6.clampy(temporalPointsXY[5][1]+py)][tile6.clampx(temporalPointsXY[5][0]+px)])*
+								(tile[_beauty[2]][tile.clampy(y)][tile.clampx(i)] - tile6[_beauty[2]][tile6.clampy(temporalPointsXY[5][1]+py)][tile6.clampx(temporalPointsXY[5][0]+px)]));
 
 					albedoValue1[0] = tile[_albedo[0]][ tile.clampy(y + py)][ tile.clampx(i + px)];
 					albedoValue1[1] = tile[_albedo[1]][ tile.clampy(y + py)][ tile.clampx(i + px)];
