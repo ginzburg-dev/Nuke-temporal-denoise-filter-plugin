@@ -1,1 +1,1 @@
-# Nuke Temporal Ginzburg Denoise Filter
+# Nuke Temporal Ginzburg Filter by Ginzburg
